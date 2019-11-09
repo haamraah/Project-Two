@@ -1,5 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
   var Workorder = sequelize.define("Workorder", {
+    // date of installation
+    installationDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+
     // name of client
     clientName: {
       type: DataTypes.STRING,
