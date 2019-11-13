@@ -28,11 +28,38 @@ module.exports = function (app) {
       res.json(dbExamples);
     });
   });
+  app.get("/api/workorder", function (req, res) {
+    db.Workorder.findAll({}).then(function (dbExamples) {
+      res.json(dbExamples);
+    });
+  });
+  app.get("/api/workorder/:installerName/:status/:installationDate/:clientName/:jobAddress/:id", function (req, res) {
 
+    var _installerName = req.params.installerName;
+    var _status = req.params.status;
+    var _installationDate = req.params.installationDate;
+    var _clientName = req.params.clientName;
+    var _jobAddress = req.params.jobAddress;
+    var _id = req.params.status;
+
+    db.Workorder.findAll({
+      where: {
+
+        installerName: _installerName,
+        status: _status,
+        installationDate: _installationDate,
+        clientName: _clientName,
+        jobAddress: _jobAddress,
+        id: _id
+      }
+    }).then(function (searchResult) {
+      res.json(searchResult);
+    });
+  });
   // Create a new workorder
   app.post("/api/workorder", function (req, res) {
     db.Workorder.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
+      res.redirect("/dashboard");
     });
   });
   app.put("/api/workorder/:id", function (req, res) {
