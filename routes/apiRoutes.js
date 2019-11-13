@@ -10,8 +10,8 @@ module.exports = function (app) {
     });
   });
 
-  // Create a new workorder
-  app.post("/api/workorder", function (req, res) {
+  // Store work-order into database
+  app.get("/api/workorder/add", function (req, res) {
     //   var data = {
     //     creationDate: "10/10/1997",
     //     clientName: "Shiyu",
@@ -70,6 +70,7 @@ module.exports = function (app) {
       res.json(dbExample);
     });
   });
+
   app.put("/api/warehouse/:id", function (req, res) {
 
     db.Warehouse.update(
