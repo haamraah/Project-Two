@@ -1,47 +1,97 @@
-const db = require("../models");
+var db = require("../models");
+// var Workorder = require('../models/workorder');
 
-module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+module.exports = function (app) {
+
+  // work order routes
+  app.get("/api/workorder", function (req, res) {
+    db.Workorder.findAll({}).then(function (workOrder) {
+      res.json(workOrder);
     });
   });
 
-  // Create a new example
-  app.post("/dashboard/add", function(req, res) {
-    const data = {
-      creationDate = "10/10/1997",
-      clientNmae = "Shiyu",
-      clientPhone = 123456,
-      clientAddress = "550N 5AV, AZ",
-      jobAddress = "879E 7Th, Az",
-      installerName = "Bruce",
-      materials = "Light",
-      isComplete = "Pending",
-      comments = "Hello World!",
-    };
+  // Create a new workorder
+  app.post("/api/workorder", function (req, res) {
+    //   var data = {
+    //     creationDate: "10/10/1997",
+    //     clientName: "Shiyu",
+    //     clientPhone: 123456,
+    //     clientAddress: "550N 5AV, AZ",
+    //     jobAddress: "879E 7Th, Az",
+    //     installerName: "Bruce",
+    //     materials: "Light",
+    //     isComplete: "Pending",
+    //     comments: "Hello World!",
+    // };
 
-    // let { creationDate, clientName, clientPhone, clientAddress, jobAddress, installerName, materials, isComplete, comments} = req.body;
-    // Insert into table
-    db.create({
-      creationDate,
-      clientName,
-      clientPhone,
-      clientAddress,
-      jobAddress,
-      installerName,
-      materials,
-      isComplete,
-      comments
-    }).then(job => res.redirect('/dashboard'))
+    // var {creationDate, clientName, clientPhone, clientAddress, jobAddress, installerName, materials, isComplete, comments} = data;
+    // Insert into table.
+    db.Workorder.create(req.body).then(() => res.redirect('/dashboard') )
       .catch(err => console.log(err))
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+  app.put("/api/workorder/:id", function (req, res) {
+
+    db.Workorder.update(
+      req.body, {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+      .then(function (rowsUpdated) {
+        res.json(rowsUpdated);
+      });
+
+  });
+
+  // Delete an workorder by id
+  app.delete("/api/workorder/:id", function (req, res) {
+    db.Workorder.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbExample) {
+      res.json(dbExample);
+    });
+
+  });
+
+  app.get("/api/warehouse", function (req, res) {
+    db.Warehouse.findAll({}).then(function (dbExamples) {
+      res.json(dbExamples);
+
+    });
+  });
+
+  // Create a new warehouse
+  app.post("/api/warehouse", function (req, res) {
+    db.Warehouse.create(req.body).then(function (dbExample) {
       res.json(dbExample);
     });
   });
+  app.put("/api/warehouse/:id", function (req, res) {
+
+    db.Warehouse.update(
+      req.body, {
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(function (rowsUpdated) {
+        res.json(rowsUpdated);
+      });
+
+  });
+  // Delete an warehouse by id
+  app.delete("/api/warehouse/:id", function (req, res) {
+    db.Warehouse.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbExample) {
+      res.json(dbExample);
+    });
+  });
+
 };
