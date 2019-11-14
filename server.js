@@ -60,12 +60,27 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Handlebars
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+
+  // Helper functions
+  helpers: {
+    try: function (property) {
+      switch(property) {
+      case "Competed":
+        return "bg-success";
+        break;
+      case "Pending":
+        return "bg-warning";
+      case "Canceled":
+        return "bg-danger";
+      }
+    },
+  }
+});
+
 app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+  "handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Routes
