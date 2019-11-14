@@ -1,6 +1,6 @@
-<div class="container">
-	<div class="page-header mt-4">
-		<h1>HamJARs</h1>
+<div class="container-fluid">
+	<div class="page-header">
+		<h1 class="m-4">HamJARs</h1>
 	</div>
 	<!--            navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,12 +23,13 @@
 </div>
 
 
-<div class="container">
+<div class="container mt-5">
 	<div class="row">
+		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>
 		<div class="col-1 ml-auto">
 			<!-- Add Button trigger modal -->
 			<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
-				Add
+				Add <i class="fas fa-users-cog"></i>
 			</button>
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,10 +113,8 @@
 			<thead>
 			<tr>
 				<th class="th-sm">Client Name</th>
-				<th class="th-sm">Client Address</th>
 				<th class="th-sm">Client Phone</th>
 				<th class="th-sm">Installation Date</th>
-				<th class="th-sm">Job Address</th>
 				<th class="th-sm">Materials</th>
 				<th class="th-sm">Status</th>
 				<th class="th-sm">Installer Name</th>
@@ -127,45 +126,62 @@
 			<!--                    single row-->
 			<tr>
 				<th scope="row">Mike</th>
-				<td>550N 7th</td>
 				<td>(343)78923</td>
 				<td>12/78/2019</td>
-				<td>340E 3th</td>
 				<td>Green</td>
 				<td><span class="badge badge-pill badge-warning">Pending</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
 				<td><button class="badge badge-pill badge-success">Edit</button></td>
 			</tr>
+			<tr id="address" class="">
+				<th>Client Address:</th>
+				<td colspan="3">789N 9th, AZ</td>
+				<th>Job Address:</th>
+				<td colspan="2">237S 5th, AZ</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+			</tr>
 			<!--                    end of single row-->
 			<!--                    single row-->
 			<tr>
 				<th scope="row">Jack</th>
-				<td>550N 7th</td>
 				<td>(343)78923</td>
 				<td>12/78/2019</td>
-				<td>340E 3th</td>
 				<td>Green</td>
-				<td><span class="badge badge-pill badge-danger">danger</span></td>
+				<td><span class="badge badge-pill badge-danger">Canceled</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
 				<td><button class="badge badge-pill badge-success">Edit</button></td>
+			</tr>
+			<tr id="address" class="">
+				<th>Client Address:</th>
+				<td colspan="3">789N 9th, AZ</td>
+				<th>Job Address:</th>
+				<td colspan="2">237S 5th, AZ</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
 			<!--			single row-->
 		{{#each orders}}
 			<tr>
 				<th scope="row">{{clientName}}</th>
-				<td>{{clientAddress}}</td>
 				<td>{{clientPhone}}</td>
 				<td>{{installationDate}}</td>
-				<td>{{jobAddress}}</td>
 				<td>{{materials}}</td>
-				<td><span class="badge badge-pill badge-danger">{{isComplete}}</span></td>
+				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
 				<td><button class="badge badge-pill badge-success">Edit</button></td>
 			</tr>
+<!--			address-->
+			<tr id="address" class="">
+				<th>Client Address:</th>
+				<td colspan="3">{{clientAddress}}</td>
+				<th>Job Address:</th>
+				<td colspan="2">{{jobAddress}}</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+			</tr>
+<!--			end of address-->
 
 			<!--read modal-->
 			<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel" aria-hidden="true">
@@ -194,5 +210,20 @@
 			</tbody>
 		</table>
 	</div>
-
 </div>
+
+<style>
+	#address{
+		background: #323147;
+		font-size: small;
+		padding: 0;
+		color: white;
+		line-height: 10px;
+		min-height: 10px;
+		height: 10px;
+	}
+
+	.fa-map-marked-alt{
+		color: white;
+	}
+</style>
