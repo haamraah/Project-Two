@@ -1,11 +1,13 @@
-var moment = (module.exports = function(sequelize, DataTypes) {
+var moment = require("moment");
+
+module.exports = function(sequelize, DataTypes) {
   var Workorder = sequelize.define("Workorder", {
-    // date of creation
+    // date of installation
     installationDate: {
-      type: DataTypes.DATETIME,
+      type: DataTypes.DATE,
       allowNull: false,
       get: function() {
-        return moment.utc(this.getDataValue("CreateDate")).format("YYYY-MM-DD");
+        return moment.utc(this.getDataValue("installationDate")).format("YYYY-MM-DD");
       },
       validate: {
         len: [1]
@@ -82,4 +84,4 @@ var moment = (module.exports = function(sequelize, DataTypes) {
     }
   });
   return Workorder;
-});
+};
