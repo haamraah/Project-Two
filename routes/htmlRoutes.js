@@ -2,13 +2,10 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-
   // middleware function to check for logged-in users
   var sessionChecker = (req, res, next) => {
     if (req.session.user && req.cookies.user_sid) {
       res.redirect("/dashboard");
-
-
     } else {
       next();
     }
@@ -41,7 +38,6 @@ module.exports = function (app) {
         });
     });
 
-
   // route for user Login
   app.route("/login")
     .get(sessionChecker, (req, res) => {
@@ -63,7 +59,6 @@ module.exports = function (app) {
         } else {
           req.session.user = user.dataValues;
           res.redirect("/dashboard");
-
         }
       });
     });
@@ -72,18 +67,18 @@ module.exports = function (app) {
   // route for user's dashboard
   app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-      let _userName = {
-        name: JSON.stringify(req.session.user)
-      };
-      res.render("dashboard", {
-        userName:_userName
-      });
-      // res.sendFile(process.cwd() + '/public/dashboard.html');
+      let userName = req.session.user.username;
+      db.Workorder.findAll()
+        .then(workOrders =>
+          res.render("dashboard", {
+            orders: workOrders,
+            userName: userName.toUpperCase()
+          }))
+        .catch(err => console.log(err))
     } else {
       res.redirect("/login");
     }
   });
-
 
   // route for user logout
   app.get("/logout", (req, res) => {
@@ -95,12 +90,9 @@ module.exports = function (app) {
     }
   });
 
-
   // route for handling 404 requests(unavailable routes)
   app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
   });
-
-
 
 };
