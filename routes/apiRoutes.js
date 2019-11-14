@@ -1,35 +1,40 @@
 var db = require("../models");
-// var Workorder = require('../models/workorder');
 
 module.exports = function (app) {
+  // Get all examples
+  // app.get("/api/examples", function(req, res) {
+  //   db.Example.findAll({}).then(function(dbExamples) {
+  //     res.json(dbExamples);
+  //   });
+  // });
+
+  // // Create a new example
+  // app.post("/api/examples", function(req, res) {
+  //   db.Example.create(req.body).then(function(dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
+
+  // // Delete an example by id
+  // app.delete("/api/examples/:id", function(req, res) {
+  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
 
   // work order routes
   app.get("/api/workorder", function (req, res) {
-    db.Workorder.findAll({}).then(function (workOrder) {
-      res.json(workOrder);
+    db.Workorder.findAll({}).then(function (dbExamples) {
+      res.json(dbExamples);
     });
   });
 
-  // Store work-order into database
-  app.get("/api/workorder/add", function (req, res) {
-    //   var data = {
-    //     creationDate: "10/10/1997",
-    //     clientName: "Shiyu",
-    //     clientPhone: 123456,
-    //     clientAddress: "550N 5AV, AZ",
-    //     jobAddress: "879E 7Th, Az",
-    //     installerName: "Bruce",
-    //     materials: "Light",
-    //     isComplete: "Pending",
-    //     comments: "Hello World!",
-    // };
-
-    // var {creationDate, clientName, clientPhone, clientAddress, jobAddress, installerName, materials, isComplete, comments} = data;
-    // Insert into table.
-    db.Workorder.create(req.body).then(() => res.redirect('/dashboard') )
-      .catch(err => console.log(err))
+  // Create a new workorder
+  app.post("/api/workorder", function (req, res) {
+    db.Workorder.create(req.body).then(function (dbExample) {
+      res.json(dbExample);
+    });
   });
-
   app.put("/api/workorder/:id", function (req, res) {
 
     db.Workorder.update(
@@ -49,6 +54,8 @@ module.exports = function (app) {
   app.delete("/api/workorder/:id", function (req, res) {
     db.Workorder.destroy({
       where: {
+
+
         id: req.params.id
       }
     }).then(function (dbExample) {
@@ -56,6 +63,16 @@ module.exports = function (app) {
     });
 
   });
+
+  // test //
+  // app.get("/api/users", function (req, res) {
+  //   db.User.findAll({}).then(function (dbExamples) {
+  //     res.json(dbExamples);
+
+  //   });
+  // });
+
+  // Warehouse routes
 
   app.get("/api/warehouse", function (req, res) {
     db.Warehouse.findAll({}).then(function (dbExamples) {
@@ -70,7 +87,6 @@ module.exports = function (app) {
       res.json(dbExample);
     });
   });
-
   app.put("/api/warehouse/:id", function (req, res) {
 
     db.Warehouse.update(
@@ -78,7 +94,11 @@ module.exports = function (app) {
         where: {
           id: req.params.id
         }
-      })
+      }
+
+
+
+    )
       .then(function (rowsUpdated) {
         res.json(rowsUpdated);
       });

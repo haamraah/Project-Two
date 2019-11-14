@@ -8,6 +8,7 @@ module.exports = function (app) {
     if (req.session.user && req.cookies.user_sid) {
       res.redirect("/dashboard");
 
+
     } else {
       next();
     }
@@ -83,6 +84,7 @@ module.exports = function (app) {
     }
   });
 
+
   // route for user logout
   app.get("/logout", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
@@ -93,9 +95,12 @@ module.exports = function (app) {
     }
   });
 
+
   // route for handling 404 requests(unavailable routes)
   app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!");
   });
+
+
 
 };
