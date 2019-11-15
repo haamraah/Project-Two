@@ -25,11 +25,22 @@
 
 <div class="container mt-5">
 	<div class="row">
-		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>
-		<div class="col-1 ml-auto">
+<!--		search bar-->
+		<div class="wrap mr-2">
+			<div class="search">
+				<input type="text" class="searchTerm" placeholder=" Client name or phone">
+				<button type="submit" class="searchButton">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>
+		</div>
+		<button class="badge badge-pill badge-success">Advanced Search</button>
+<!--		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>-->
+<!--		end of search bar-->
+		<div class="col-2 ml-auto">
 			<!-- Add Button trigger modal -->
 			<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
-				Add <i class="fas fa-users-cog"></i>
+				Add Client <i class="fas fa-users-cog"></i>
 			</button>
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,6 +123,7 @@
 		<table class="table table-striped">
 			<thead>
 			<tr>
+				<th class="th-sm">Review Order</th>
 				<th class="th-sm">Client Name</th>
 				<th class="th-sm">Client Phone</th>
 				<th class="th-sm">Installation Date</th>
@@ -125,6 +137,7 @@
 			<tbody>
 			<!--                    single row-->
 			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
 				<th scope="row">Mike</th>
 				<td>(343)78923</td>
 				<td>12/78/2019</td>
@@ -135,15 +148,17 @@
 				<td><button class="badge badge-pill badge-success">Edit</button></td>
 			</tr>
 			<tr id="address" class="">
-				<th>Client Address:</th>
-				<td colspan="3">789N 9th, AZ</td>
+				<th></th>
+				<td>Client Address:</td>
+				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="2">237S 5th, AZ</td>
+				<td colspan="3">237S 5th, AZ</td>
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
 			<!--                    single row-->
 			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
 				<th scope="row">Jack</th>
 				<td>(343)78923</td>
 				<td>12/78/2019</td>
@@ -154,16 +169,18 @@
 				<td><button class="badge badge-pill badge-success">Edit</button></td>
 			</tr>
 			<tr id="address" class="">
+				<th></th>
 				<th>Client Address:</th>
-				<td colspan="3">789N 9th, AZ</td>
+				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="2">237S 5th, AZ</td>
+				<td colspan="3">237S 5th, AZ</td>
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
 			<!--			single row-->
 		{{#each orders}}
 			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
 				<th scope="row">{{clientName}}</th>
 				<td>{{clientPhone}}</td>
 				<td>{{installationDate}}</td>
@@ -175,10 +192,11 @@
 			</tr>
 <!--			address-->
 			<tr id="address" class="">
+				<th></th>
 				<th>Client Address:</th>
-				<td colspan="3">{{clientAddress}}</td>
+				<td colspan="2">{{clientAddress}}</td>
 				<th>Job Address:</th>
-				<td colspan="2">{{jobAddress}}</td>
+				<td colspan="3">{{jobAddress}}</td>
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 <!--			end of address-->
@@ -213,6 +231,26 @@
 </div>
 
 <style>
+
+	/*search bar*/
+	.searchTerm{
+		border-bottom-left-radius: 5px;
+		border-top-left-radius: 5px;
+	}
+
+	.searchButton{
+		color: white;
+		border-bottom-right-radius: 5px !important;
+		border-top-right-radius: 5px !important;
+		background-color: green;
+	}
+	.searchTerm, .searchButton{
+		height: 2.5rem !important;
+		border: 4px green solid !important;
+		margin: 0;
+	}
+/*end of search bar*/
+
 	#address{
 		background: #323147;
 		font-size: small;
