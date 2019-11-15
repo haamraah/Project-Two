@@ -1,0 +1,110 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="author" content="colorlib.com" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="s007">
+    <form>
+      <div class="inner-form">
+        <div class="basic-search">
+        </div>
+        <div class="advance-search">
+          <span class="desc">Advanced Search</span>
+          <div class="row">
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="choices-single-default" id="installerName">
+                  <option placeholder="" value="">Installer Name</option>
+                  <option>Bill</option>
+                  <option>Joe</option>
+                  <option>Richard</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-select">
+                <select data-trigger="" name="choices-single-default" id="status">
+                  <option placeholder="" value="">Status</option>
+                  <option>Complete</option>
+                  <option>Pending</option>
+                  <option>Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-select">
+                <input type="date" style="font-size: 8pt;" id="installationDate">
+              </div>
+            </div>
+          </div>
+          <div class="row second">
+            <div class="input-field">
+              <div class="input-select">
+                <input type="text" placeholder="Client Name" id="clientName">
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-select">
+                <input type="text" placeholder="Job Address" id="jobAddress">
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-select">
+                <input type="text" placeholder="Workorder ID" id="workorderID">
+              </div>
+            </div>
+          </div>
+          <div class="row third">
+            <div class="input-field">
+              <button class="btn-search">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <script src="js/extention/choices.js"></script> -->
+  
+  <script>
+
+    
+
+    $(".btn-search").on("click", function () {
+      event.preventDefault();
+      var data = {
+      installerName: $("#installerName").val(),
+      status: $("#status").val(),
+      installationDate: $("#installationDate").val(),
+      clientName: $("#clientName").val(),
+      jobAddress: $("#jobAddress").val(),
+      id: $("#workorderID").val()
+    };
+      
+      console.table((JSON.stringify(data)));
+      var searchQuery = `api/workorder/:${data.installerName}/:${data.status}/:${data.installationDate}/:${data.clientName}:/${data.jobAddress}/:${data.id}`
+      console.table(searchQuery); 
+    
+    // $.get(searchQuery, function(data, status){
+    //   console.table(JSON.stringify(data));
+      
+    // })
+    });
+
+    
+
+
+
+  </script>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
