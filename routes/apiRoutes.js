@@ -28,11 +28,7 @@ module.exports = function (app) {
       res.json(dbExamples);
     });
   });
-  app.get("/api/workorder", function (req, res) {
-    db.Workorder.findAll({}).then(function (dbExamples) {
-      res.json(dbExamples);
-    });
-  });
+ 
   app.get("/api/workorder/:installerName/:status/:installationDate/:clientName/:jobAddress/:id", function (req, res) {
 
     var _installerName = req.params.installerName;
