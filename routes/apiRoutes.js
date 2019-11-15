@@ -7,18 +7,12 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-
-<<<<<<< HEAD
-=======
- 
- 
-
-
-
->>>>>>> 81226da7f9c728831c506e09023fccebe5484b1a
+  // Create a new workorder
   // Create a new workorder
   app.post("/api/workorder", function(req, res) {
-    db.Workorder.create(req.body).then(res.redirect("/dashboard"));
+    db.Workorder.create(req.body).then(function() {
+      res.redirect("/dashboard");
+    });
   });
   app.put("/api/workorder/:id", function(req, res) {
     db.Workorder.update(req.body, {
