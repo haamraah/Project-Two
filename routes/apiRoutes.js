@@ -9,8 +9,8 @@ module.exports = function(app) {
   });
 
  
-  app.get("/api/workorder/:installerName/:status/:installationDate/:clientName/:jobAddress/:id", function (req, res) {
-=======
+ 
+
 
 
   // Create a new workorder
