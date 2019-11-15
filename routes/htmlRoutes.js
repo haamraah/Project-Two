@@ -11,27 +11,32 @@ module.exports = function (app) {
     }
   };
 
+  // route for Home-Page
+  app.get("/", sessionChecker, (req, res) => {
+    res.redirect("/login");
+  });
+ 
 
-    // route for user signup
-    app.route('/signup')
-        .get(sessionChecker, (req, res) => {
-            res.sendFile(process.cwd() + '/public/signup.html');
+  // route for user signup
+  app.route("/signup")
+    .get(sessionChecker, (req, res) => {
+      res.sendFile(process.cwd() + "/public/signup.html");
+    })
+    .post((req, res) => {
+      db.User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        isAdmin:req.body.isAdmin
+      })
+        .then(user => {
+          req.session.user = user.dataValues;
+          res.redirect("/dashboard");
         })
-        .post((req, res) => {
-            db.User.create({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: req.body.password,
-                    isAdmin:req.body.isAdmin
-                })
-                .then(user => {
-                    req.session.user = user.dataValues;
-                    res.redirect('/dashboard');
-                })
-                .catch(error => {
-                    res.redirect('/signup');
-                });
+        .catch(error => {
+          res.redirect("/signup");
         });
+    });
 
   // route for user Login
   app.route("/login")
@@ -55,17 +60,9 @@ module.exports = function (app) {
           req.session.user = user.dataValues;
           res.redirect("/dashboard");
         }
+      });
     });
 
-    // route for user logout
-    app.get('/logout', (req, res) => {
-        if (req.session.user && req.cookies.user_sid) {
-            res.clearCookie('user_sid');
-            res.redirect('/');
-        } else {
-            res.redirect('/login');
-        }
-    });
 
   // route for user's dashboard
   app.get("/dashboard", (req, res) => {

@@ -8,16 +8,9 @@ module.exports = function(app) {
     });
   });
 
- 
-  app.get("/api/workorder/:installerName/:status/:installationDate/:clientName/:jobAddress/:id", function (req, res) {
-=======
-
-
   // Create a new workorder
   app.post("/api/workorder", function(req, res) {
-    db.Workorder.create(req.body).then(function() {
-      res.redirect("/dashboard");
-    });
+    db.Workorder.create(req.body).then(res.redirect("/dashboard"));
   });
   app.put("/api/workorder/:id", function(req, res) {
     db.Workorder.update(req.body, {
