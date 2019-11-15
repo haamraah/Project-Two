@@ -1,321 +1,229 @@
-<html>
-    <head>
-        <title>Login Here</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    </head>
-    <body class="container">
-        <div class="page-header">
-            <img src="../public/styles/images/Hamjars-Inc-Logo.png">
-            
-            <h1>Simple Auth-System</h1>
-            
-        </div>
-
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        {{!-- <li><a href="/">Home</a></li> --}}
-                        {{!-- <li><a href="/signup">Sign Up</a></li> --}}
-                        <li><a href="/dashboard">Dashboard</a></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        {{!-- <li><a href="/login">Log In</a></li> --}}
-                        <li><a href="/logout">Log Out</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-
-        <div class="container row">
-           <h1>Hi, Welcome to your Dashboard  {{userName.name}}</h1>
-        </div>
-    </body>
-
-    <div class="wrapper-editor">
-
-  <div class="block my-4">
-    <div class="d-flex justify-content-center">
-      <p class="h5 text-primary createShowP">0 row selected</p>
-    </div>
-  </div>
-
-  <div class="row d-flex justify-content-center modalWrapper">
-    <div class="modal fade addNewInputs" id="modalAdd1" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new form</h4>
-            <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-              <input type="text" id="inputName1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="inputName1">Client Name</label>
-            </div>
-
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Installer Name
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Hamrah</a>
-                <a class="dropdown-item" href="#">Jesus</a>
-                <a class="dropdown-item" href="#">Ridvan</a>
-                <a class="dropdown-item" href="#">Aaron</a>
-                <a class="dropdown-item" href="#">Shiyu</a>
-              </div>
-            </div>
-            <br>
-
-            <div class="md-form mb-5">
-              <input type="text" id="inputOfficeInput1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="inputOfficeInput1">Client Address</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="inputAge1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="inputAge1">Client Phone</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="date" id="inputDate1" class="form-control" placeholder="Select Date">
-              <label data-error="wrong" data-success="right" for="inputDate1">Installation Date</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="inputSalary1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="inputSalary1">Job Address</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="inputSalary1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="inputSalary1">Materials</label>
-            </div>
-            <div class="md-form mb-5">
-              <input type="text" id="inputSalary1example" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="inputSalary1example">Comments</label>
-
-              <h3>Is Complete</h3>
-              <label class="container-ridvan">Completed
-                <input type="radio" checked="checked" name="radio">
-                <span class="checkmark green"></span>
-              </label>
-              <label class="container-ridvan">Pending
-                <input type="radio" name="radio">
-                <span class="checkmark yellow"></span>
-              </label>
-              <label class="container-ridvan">Canceled
-                <input type="radio" name="radio">
-                <span class="checkmark red"></span>
-              </label>
-
-            </div>
-          </div>
-          <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
-            <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal">Add form
-              <i class="fas fa-paper-plane-o ml-1"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center">
-      <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Add<i
-          class="fas fa-plus-square ml-1"></i></a>
-    </div>
-
-    <div class="modal fade modalEditClass" id="modalEdit1" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
-            <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-              <input type="text" id="formNameEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formNameEdit1">Client Name</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formPositionEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formPositionEdit1">Installer Name</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formOfficeEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formOfficeEdit1">Client Address</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formAgeEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formAgeEdit1">Client Phone</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formDateEdit1" class="form-control datepicker">
-              <label data-error="wrong" data-success="right" for="formDateEdit1">Installation Date</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formSalaryEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formSalaryEdit1">Job Address</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formSalaryEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formSalaryEdit1">Materials</label>
-            </div>
-            <div class="md-form mb-5">
-              <input type="text" id="formSalaryEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formSalaryEdit1">Created At</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formSalaryEdit1ex" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formSalaryEdit1ex">Comments</label>
-            </div>
-
-            <div class="md-form mb-5">
-              <input type="text" id="formSalaryEdit1" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="formSalaryEdit1">Is Complete</label>
-            </div>
-
-          </div>
-          <div class="modal-footer d-flex justify-content-center editInsideWrapper">
-            <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
-              form
-              <i class="fas fa-paper-plane-o ml-1"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center buttonEditWrapper">
-      <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit1"
-        disabled>Edit<i class="fas fa-pencil-square-o ml-1"></i></a>
-    </div>
-
-    <div class="modal fade" id="modalDelete1" tabindex="-1" role="dialog" aria-labelledby="modalDelete1"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
-            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body mx-3">
-            <p class="text-center h4">Are you sure to delete selected row?</p>
-
-          </div>
-          <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
-            <button type="button" class="btn btn-danger btnYesClass" id="btnYes1" data-dismiss="modal">Yes</button>
-            <button type="button" class="btn btn-primary btnNoClass" id="btnNo1" data-dismiss="modal">No</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center">
-      <button class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal" disabled
-        data-target="#modalDelete" disabled>Delete<i class="fas fa-times ml-1"></i></a>
-    </div>
-  </div>
-
-  <table id="dt-more-columns 6" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <th class="th-sm">Client Name
-
-        </th>
-        <th class="th-sm">Installer Name
-
-        </th>
-        <th class="th-sm">Client Address
-
-        </th>
-        <th class="th-sm">Client Phone
-
-        </th>
-        <th class="th-sm">Installation Date
-
-        </th>
-        <th class="th-sm">Job Address
-
-        </th>
-        <th class="th-sm">Materials
-
-        </th>
-        <th class="th-sm">Created At
-
-        </th>
-        <th class="th-sm">Is Complete
-
-        </th>
-        <th class="th-sm">Comments
-
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-
-      {{#each Workorder}}
-      <tr>
-        <td>{{this.clientName}}</td>
-        <td>{{this.installerName}}</td>
-        <td>{{this.clientAddress}}</td>
-        <td>{{this.clientPhone}}</td>
-        <td>{{this.installationDate}}</td>
-        <td>{{this.jobAddress}}</td>
-        <td>{{this.materials}}</td>
-        <td>{{this.creationDate}}</td>
-        <td>{{this.isComplete}}</td>
-        <td>{{this.comments}}</td>
-      </tr>
-      {{/each}}
-      <tr>
-        <td>Jonas Alexander </td>
-        <td>Developer</td>
-        <td>San Francisco</td>
-        <td>30</td>
-        <td>2010/07/14</td>
-        <td>$86,500</td>
-        <td>Example</td>
-        <td>Example</td>
-        <td>Example</td>
-        <td>Example</td>
-
-      </tr>
-
-
-    </tbody>
-    <tfoot>
-
-    </tfoot>
-  </table>
+<div class="container-fluid">
+	<div class="page-header">
+		<h1 class="m-4">HamJARs</h1>
+	</div>
+	<!--            navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand ml-2" href="#">{{userName}}</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Sign out</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<hr/>
 </div>
 
 
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-</script>
-</html>
+<div class="container mt-5">
+	<div class="row">
+		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>
+		<div class="col-1 ml-auto">
+			<!-- Add Button trigger modal -->
+			<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
+				Add <i class="fas fa-users-cog"></i>
+			</button>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="/api/workorder">
+								<div class="form-group">
+									<input class="form-control" name="clientName" id="clientName" aria-describedby="clientName">
+									<label for="clientName" class="font-weight-bold">ClientName</label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="clientAddress" id="clientAddress" aria-describedby="clientAddress" placeholder="Enter address">
+									<label for="clientAddress" class="font-weight-bold">Client Address</label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="clientPhone" id="clientPhone" placeholder="Phone number">
+									<label for="clientPhone" class="font-weight-bold">Client Phone</label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="installationDate" id="installDate" placeholder="mm/dd/yyyy">
+									<label for="installDate" class="font-weight-bold">Installation Date</label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="jobAddress" id="jobAddress">
+									<label for="jobAddress" class="font-weight-bold">Job Address</label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materials" id="materials">
+									<label for="materials" class="font-weight-bold">Materials</label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="comments" id="comments" placeholder="Any quick note...">
+									<label for="comments" class="font-weight-bold">Note</label>
+								</div>
+								<div class="form-group">
+									<label for="Installer">Installer</label>
+									<select class="form-control" id="Installer" name="installerName">
+										<option>Jackson</option>
+										<option>Peter</option>
+										<option>Danny</option>
+										<option>David</option>
+									</select>
+								</div>
+
+								<!--                                        process-->
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									<label class="form-check-label" for="inlineRadio1"><span class="badge badge-pill badge-success">Completed</span></label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+									<label class="form-check-label" for="inlineRadio2"><span class="badge badge-pill badge-warning">Pending</span></label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+									<label class="form-check-label" for="inlineRadio3"><span class="badge badge-pill badge-danger">Canceled</span></label>
+								</div>
+								<!--                                        end of process-->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<input type="submit" class="btn btn-primary" value="Submit">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!--                    end of modal-->
+		</div>
+	</div>
+	<div class="row mt-4">
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th class="th-sm">Client Name</th>
+				<th class="th-sm">Client Phone</th>
+				<th class="th-sm">Installation Date</th>
+				<th class="th-sm">Materials</th>
+				<th class="th-sm">Status</th>
+				<th class="th-sm">Installer Name</th>
+				<th class="th-sm">Note</th>
+				<th class="th-sm">Edit</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!--                    single row-->
+			<tr>
+				<th scope="row">Mike</th>
+				<td>(343)78923</td>
+				<td>12/78/2019</td>
+				<td>Green</td>
+				<td><span class="badge badge-pill badge-warning">Pending</span></td>
+				<td>Jack</td>
+				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
+				<td><button class="badge badge-pill badge-success">Edit</button></td>
+			</tr>
+			<tr id="address" class="">
+				<th>Client Address:</th>
+				<td colspan="3">789N 9th, AZ</td>
+				<th>Job Address:</th>
+				<td colspan="2">237S 5th, AZ</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+			</tr>
+			<!--                    end of single row-->
+			<!--                    single row-->
+			<tr>
+				<th scope="row">Jack</th>
+				<td>(343)78923</td>
+				<td>12/78/2019</td>
+				<td>Green</td>
+				<td><span class="badge badge-pill badge-danger">Canceled</span></td>
+				<td>Jack</td>
+				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
+				<td><button class="badge badge-pill badge-success">Edit</button></td>
+			</tr>
+			<tr id="address" class="">
+				<th>Client Address:</th>
+				<td colspan="3">789N 9th, AZ</td>
+				<th>Job Address:</th>
+				<td colspan="2">237S 5th, AZ</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+			</tr>
+			<!--                    end of single row-->
+			<!--			single row-->
+		{{#each orders}}
+			<tr>
+				<th scope="row">{{clientName}}</th>
+				<td>{{clientPhone}}</td>
+				<td>{{installationDate}}</td>
+				<td>{{materials}}</td>
+				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
+				<td>{{installerName}}</td>
+				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
+				<td><button class="badge badge-pill badge-success">Edit</button></td>
+			</tr>
+<!--			address-->
+			<tr id="address" class="">
+				<th>Client Address:</th>
+				<td colspan="3">{{clientAddress}}</td>
+				<th>Job Address:</th>
+				<td colspan="2">{{jobAddress}}</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+			</tr>
+<!--			end of address-->
+
+			<!--read modal-->
+			<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="readModalLabel">Order note: </h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>{{comments}}</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end of read modal-->
+		{{else}}
+<!--			<P>No  jobs available</P>-->
+		{{/each}}
+			<!--			end of single row-->
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+	#address{
+		background: #323147;
+		font-size: small;
+		padding: 0;
+		color: white;
+		line-height: 10px;
+		min-height: 10px;
+		height: 10px;
+	}
+
+	.fa-map-marked-alt{
+		color: white;
+	}
+</style>

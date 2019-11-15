@@ -2,22 +2,14 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-
-    // middleware function to check for logged-in users
-    var sessionChecker = (req, res, next) => {
-        if (req.session.user && req.cookies.user_sid) {
-            res.redirect('/dashboard');
-
-
-        } else {
-            next();
-        }
-    };
-
-    // route for Home-Page
-    app.get('/', sessionChecker, (req, res) => {
-        res.redirect('/login');
-    });
+  // middleware function to check for logged-in users
+  var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+      res.redirect("/dashboard");
+    } else {
+      next();
+    }
+  };
 
 
     // route for user signup
@@ -41,49 +33,27 @@ module.exports = function (app) {
                 });
         });
 
+  // route for user Login
+  app.route("/login")
+    .get(sessionChecker, (req, res) => {
+      res.sendFile(process.cwd() + "/public/login.html");
+    })
+    .post((req, res) => {
+      var username = req.body.username,
+        password = req.body.password;
 
-    // route for user Login
-    app.route('/login')
-        .get(sessionChecker, (req, res) => {
-            res.sendFile(process.cwd() + '/public/login.html');
-        })
-        .post((req, res) => {
-            var username = req.body.username,
-                password = req.body.password;
-
-            db.User.findOne({
-                where: {
-                    username: username
-                }
-            }).then(function (user) {
-                if (!user) {
-                    res.redirect('/login');
-                } else if (!user.validPassword(password)) {
-                    res.redirect('/login');
-                } else {
-                    req.session.user = user.dataValues;
-                    res.redirect('/dashboard');
-
-                }
-            });
-        });
-
-
-    // route for user's dashboard
-    app.get('/dashboard', async (req, res) => {
-        if (req.session.user && req.cookies.user_sid) {
-            let _userName = {
-                name: JSON.stringify(req.session.user.username) 
-            }
-            let workorder = await db.Workorder.findAll();
-            console.log(workorder.dataValues);
-            res.render("dashboard", {
-                Workorder: workorder,
-                userName:_userName
-            })
-            // res.sendFile(process.cwd() + '/public/dashboard.html');
+      db.User.findOne({
+        where: {
+          username: username
+        }
+      }).then(function (user) {
+        if (!user) {
+          res.redirect("/login");
+        } else if (!user.validPassword(password)) {
+          res.redirect("/login");
         } else {
-            res.redirect('/login');
+          req.session.user = user.dataValues;
+          res.redirect("/dashboard");
         }
     });
 
@@ -97,12 +67,35 @@ module.exports = function (app) {
         }
     });
 
+  // route for user's dashboard
+  app.get("/dashboard", (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+      let userName = req.session.user.username;
+      db.Workorder.findAll()
+        .then(workOrders =>
+          res.render("dashboard", {
+            orders: workOrders,
+            userName: userName.toUpperCase()
+          }))
+        .catch(err => console.log(err))
+    } else {
+      res.redirect("/login");
+    }
+  });
 
-    // route for handling 404 requests(unavailable routes)
-    app.use(function (req, res, next) {
-        res.status(404).send("Sorry can't find that!")
-    });
+  // route for user logout
+  app.get("/logout", (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+      res.clearCookie("user_sid");
+      res.redirect("/");
+    } else {
+      res.redirect("/login");
+    }
+  });
 
- 
+  // route for handling 404 requests(unavailable routes)
+  app.use(function (req, res, next) {
+    res.status(404).send("Sorry can't find that!");
+  });
 
 };
