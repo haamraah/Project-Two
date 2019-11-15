@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
 
     // price of material
     materialPrice: {
-      type: DataTypes.DECIMAL(10,2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
         len: [1]

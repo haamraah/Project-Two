@@ -2,4 +2,12 @@
 node_modules
 npm-debug.log
 .env
+.idea
 config/config.json
+
+
+
+
+
+
+
