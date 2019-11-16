@@ -5,7 +5,8 @@
 	<!--            navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand ml-2" href="#">{{userName}}</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
@@ -16,13 +17,18 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/logout">Sign out</a>
 				</li>
+				{{#if user.isAdmin}}
+				<li class="nav-item">
+					<a class="nav-link" href="/signup">Signup</a>
+				</li>
+				{{/if}}
 				<li class="nav-item">
 					<a class="nav-link" href="/warehouse">Warehouse</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-	<hr/>
+	<hr />
 </div>
 
 
@@ -49,7 +55,8 @@
 			{{/if}}
 			
 			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -61,19 +68,23 @@
 						<div class="modal-body">
 							<form method="post" action="/api/workorder" id="form">
 								<div class="form-group">
-									<input class="form-control" name="clientName" id="clientName" aria-describedby="clientName">
+									<input class="form-control" name="clientName" id="clientName"
+										aria-describedby="clientName">
 									<label for="clientName" class="font-weight-bold">ClientName</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="clientAddress" id="clientAddress" aria-describedby="clientAddress" placeholder="Enter address">
+									<input class="form-control" name="clientAddress" id="clientAddress"
+										aria-describedby="clientAddress" placeholder="Enter address">
 									<label for="clientAddress" class="font-weight-bold">Client Address</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="clientPhone" id="clientPhone" placeholder="Phone number">
+									<input class="form-control" name="clientPhone" id="clientPhone"
+										placeholder="Phone number">
 									<label for="clientPhone" class="font-weight-bold">Client Phone</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="installationDate" id="installDate" placeholder="mm/dd/yyyy">
+									<input class="form-control" name="installationDate" id="installDate"
+										placeholder="mm/dd/yyyy">
 									<label for="installDate" class="font-weight-bold">Installation Date</label>
 								</div>
 								<div class="form-group">
@@ -85,7 +96,8 @@
 									<label for="materials" class="font-weight-bold">Materials</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="comments" id="comments" placeholder="Any quick note...">
+									<input class="form-control" name="comments" id="comments"
+										placeholder="Any quick note...">
 									<label for="comments" class="font-weight-bold">Note</label>
 								</div>
 								<div class="form-group">
@@ -100,16 +112,22 @@
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1" value="Completed">
-									<label class="form-check-label" for="inlineRadio1"><span class="badge badge-pill badge-success">Completed</span></label>
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1"
+										value="Completed">
+									<label class="form-check-label" for="inlineRadio1"><span
+											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2" value="Pending">
-									<label class="form-check-label" for="inlineRadio2"><span class="badge badge-pill badge-warning">Pending</span></label>
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2"
+										value="Pending">
+									<label class="form-check-label" for="inlineRadio2"><span
+											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3" value="Canceled">
-									<label class="form-check-label" for="inlineRadio3"><span class="badge badge-pill badge-danger">Canceled</span></label>
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3"
+										value="Canceled">
+									<label class="form-check-label" for="inlineRadio3"><span
+											class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
 								<!--                                        end of process-->
 								<div class="modal-footer">
@@ -137,7 +155,9 @@
 				<th class="th-sm">Status</th>
 				<th class="th-sm">Installer Name</th>
 				<th class="th-sm">Note</th>
-				<th class="th-sm">Edit</th>
+				{{#if user.isAdmin}}
+					<th class="th-sm">Edit</th>
+				{{/if}}
 			</tr>
 			</thead>
 			<tbody>
@@ -151,15 +171,21 @@
 				<td><span class="badge badge-pill badge-warning">Pending</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-<!--				<td><button class="badge badge-pill badge-success">Edit</button></td>-->
-				<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{/if}}
 			</tr>
 			<tr id="address" class="">
 				<th></th>
 				<th>Client Address:</th>
 				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="3">237S 5th, AZ</td>
+				{{#if user.isAdmin}}
+					<td colspan="3">237S 5th, AZ</td>
+				{{else}}
+					<td colspan="2">237S 5th, AZ</td>
+				{{/if}}
+
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
@@ -173,14 +199,20 @@
 				<td><span class="badge badge-pill badge-danger">Canceled</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				<td><button class="badge badge-pill badge-success">Edit</button></td>
+				{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{/if}}
 			</tr>
 			<tr id="address" class="">
 				<th></th>
 				<th>Client Address:</th>
 				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="3">237S 5th, AZ</td>
+				{{#if user.isAdmin}}
+					<td colspan="3">237S 5th, AZ</td>
+				{{else}}
+					<td colspan="2">237S 5th, AZ</td>
+				{{/if}}
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
@@ -195,7 +227,10 @@
 				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				<td><button class="badge badge-pill badge-success">Edit</button></td>
+				{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{/if}}
+
 			</tr>
 <!--			address-->
 			<tr id="address" class="">
@@ -208,30 +243,31 @@
 			</tr>
 <!--			end of address-->
 
-			<!--read modal-->
-			<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="readModalLabel">Order note: </h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>{{comments}}</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<!--read modal-->
+				<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="readModalLabel">Order note: </h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>{{comments}}</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!--end of read modal-->
-		{{else}}
-<!--			<P>No  jobs available</P>-->
-		{{/each}}
-			<!--			end of single row-->
+				<!--end of read modal-->
+				{{else}}
+				<!--			<P>No  jobs available</P>-->
+				{{/each}}
+				<!--			end of single row-->
 			</tbody>
 		</table>
 	</div>
@@ -271,12 +307,12 @@
 		height: 10px;
 	}
 
-	.fa-map-marked-alt{
+	.fa-map-marked-alt {
 		color: white;
 	}
 </style>
 	<script>
-
+// Pagination function
     $(document).ready(function () {
         // $('li').click(function () {
         //     $(this).addClass('active').siblings().removeClass('active');

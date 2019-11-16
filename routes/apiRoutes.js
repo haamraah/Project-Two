@@ -85,4 +85,22 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+
+  app.get("/api/dashboard", (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+      let _user = req.session.user;
+      console.log(_user);
+      db.Workorder.findAll()
+        .then(workOrders =>
+          res.json({
+            orders: workOrders,
+            user: _user
+          }))
+        .catch(err => console.log(err))
+    } else {
+      res.redirect("/login");
+    }
+  });
 };
+
+
