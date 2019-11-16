@@ -137,7 +137,9 @@
 				<th class="th-sm">Status</th>
 				<th class="th-sm">Installer Name</th>
 				<th class="th-sm">Note</th>
-				<th class="th-sm">Edit</th>
+				{{#if user.isAdmin}}
+					<th class="th-sm">Edit</th>
+				{{/if}}
 			</tr>
 			</thead>
 			<tbody>
@@ -151,15 +153,21 @@
 				<td><span class="badge badge-pill badge-warning">Pending</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-<!--				<td><button class="badge badge-pill badge-success">Edit</button></td>-->
-				<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{/if}}
 			</tr>
 			<tr id="address" class="">
 				<th></th>
 				<th>Client Address:</th>
 				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="3">237S 5th, AZ</td>
+				{{#if user.isAdmin}}
+					<td colspan="3">237S 5th, AZ</td>
+				{{else}}
+					<td colspan="2">237S 5th, AZ</td>
+				{{/if}}
+
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
@@ -173,14 +181,20 @@
 				<td><span class="badge badge-pill badge-danger">Canceled</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				<td><button class="badge badge-pill badge-success">Edit</button></td>
+				{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{/if}}
 			</tr>
 			<tr id="address" class="">
 				<th></th>
 				<th>Client Address:</th>
 				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="3">237S 5th, AZ</td>
+				{{#if user.isAdmin}}
+					<td colspan="3">237S 5th, AZ</td>
+				{{else}}
+					<td colspan="2">237S 5th, AZ</td>
+				{{/if}}
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
@@ -195,7 +209,9 @@
 				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				<td><button class="badge badge-pill badge-success">Edit</button></td>
+				{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{/if}}
 			</tr>
 <!--			address-->
 			<tr id="address" class="">
