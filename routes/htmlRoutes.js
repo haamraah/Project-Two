@@ -19,7 +19,7 @@ module.exports = function (app) {
 
   // route for user signup
   app.route("/signup")
-    .get(sessionChecker, (req, res) => {
+    .get((req, res) => {
       res.sendFile(process.cwd() + "/public/signup.html");
     })
     .post((req, res) => {
@@ -31,7 +31,7 @@ module.exports = function (app) {
       })
         .then(user => {
           req.session.user = user.dataValues;
-          res.redirect("/dashboard");
+          res.redirect("/login");
         })
         .catch(error => {
           res.redirect("/signup");
