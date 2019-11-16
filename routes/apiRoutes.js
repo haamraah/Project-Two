@@ -10,15 +10,32 @@ module.exports = function(app) {
 
   // Create a new workorder
   app.post("/api/workorder", function(req, res) {
-    db.Workorder.create(req.body).then(res.redirect("/dashboard"));
+    db.Workorder.create(req.body).then((order) => {
+      // res.json(order);
+      res.redirect("/dashboard")});
   });
+
+  // Get order by id
+  app.get("/api/workorder/:id", function(req, res) {
+    console.log("ID: "+req.params.id, db.Workorder.id);
+    db.Workorder.findAll(req.body, {
+      where: {
+        clientName: req.params.id
+      }
+    }).then(function(order) {
+      res.json(order);
+    });
+  });
+
+  // Update workorder
   app.put("/api/workorder/:id", function(req, res) {
+    console.log("ID: "+req.params.id);
     db.Workorder.update(req.body, {
       where: {
         id: req.params.id
       }
     }).then(function(rowsUpdated) {
-      res.json(rowsUpdated);
+      res.redirect("/dashboard");
     });
   });
 
