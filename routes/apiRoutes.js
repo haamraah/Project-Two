@@ -8,11 +8,6 @@ module.exports = function(app) {
     });
   });
 
- 
- 
-
-
-
   // Create a new workorder
   app.post("/api/workorder", function(req, res) {
     db.Workorder.create(req.body).then(function() {
@@ -29,7 +24,7 @@ module.exports = function(app) {
     });
   });
 
-  // Delete an workorder by id
+  // Delete a workorder by id
   app.delete("/api/workorder/:id", function(req, res) {
     db.Workorder.destroy({
       where: {
@@ -40,14 +35,6 @@ module.exports = function(app) {
     });
   });
 
-  // test //
-  // app.get("/api/users", function (req, res) {
-  //   db.User.findAll({}).then(function (dbExamples) {
-  //     res.json(dbExamples);
-
-  //   });
-  // });
-
   // Warehouse routes
 
   app.get("/api/warehouse", function(req, res) {
@@ -56,12 +43,14 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new warehouse
+  // Create a new material in warehouse
   app.post("/api/warehouse", function(req, res) {
     db.Warehouse.create(req.body).then(function(dbExample) {
       res.json(dbExample);
     });
   });
+
+  // Update material in warehouse
   app.put("/api/warehouse/:id", function(req, res) {
     db.Warehouse.update(req.body, {
       where: {
@@ -71,7 +60,8 @@ module.exports = function(app) {
       res.json(rowsUpdated);
     });
   });
-  // Delete an warehouse by id
+
+  // Delete a material by id
   app.delete("/api/warehouse/:id", function(req, res) {
     db.Warehouse.destroy({
       where: {
