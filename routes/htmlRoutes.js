@@ -68,6 +68,7 @@ module.exports = function (app) {
   app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
       let _user = req.session.user;
+      console.log(_user);
       db.Workorder.findAll()
         .then(workOrders =>
           res.render("dashboard", {
