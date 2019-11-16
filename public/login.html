@@ -1,17 +1,51 @@
 <html>
-    <head>
-        <title>Login Here</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    </head>
-    <body class="container">
-        <div class="page-header">
-            <h1>Simple Auth-System</h1>
-        </div>
 
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<head>
+    <title>Login Here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="logo" type="image/png" href="/public/styles/images/Hamjars-Inc-Logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
+     <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="shortcut icon" href="styles/images/apple-icon-60x60.png">
+</head>
+
+<body>
+
+    <div class="container text-center">
+        <div class="page-header row">
+            <img class="logo-img" width="300" heigt="300" src="styles/images/Hamjars-Inc-Logo.png" ALT="align box"
+                ALIGN=center>
+            <div class="col-8">
+                <h1 style="font-family: 'Audiowide', cursive;">Welcome to HAMJARS Inc.</h1>
+                <p style="font-family: 'Audiowide', cursive;">Please Log in!</p>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="jumbotron align-self-center col-md-auto" style="float: none;">
+                <form action="/login" method="post">
+                    <div>
+                        <label><i class="fas fa-user"></i> Username:</label>
+                        <input type="text" name="username" />
+                    </div>
+                    <div>
+                        <label><i class="fas fa-unlock-alt"></i> Password:</label>
+                        <input type="password" name="password" />
+                    </div>
+                    <div><br>
+                        <input class="btn btn-primary" type="submit" value="Log In" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- <div class="navbar navbar-default">
+
+        <nav>
+
+            <div class="container-fluid"> -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="/signup">Sign Up</a></li>
@@ -22,26 +56,11 @@
                         <li><a href="/login">Log In</a></li>
                         <li><a href="/logout">Log Out</a></li>
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-
-        <div class="container row">
-            <div class="jumbotron col-sm-4 pull-center">
-                <form action="/login" method="post">
-                    <div>
-                        <label>Username:</label>
-                        <input type="text" name="username"/>
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="password" name="password"/>
-                    </div>
-                    <div>
-                        <input class="btn btn-primary" type="submit" value="Log In"/>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </body>
+        </nav>
+    </div> -->
+    </div>
+</body>
+
 </html>
