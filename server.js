@@ -67,7 +67,7 @@ const hbs = exphbs.create({
   helpers: {
     checkStatus: function (property) {
       switch(property) {
-      case "Competed":
+      case "Completed":
         return "bg-success";
       case "Pending":
         return "bg-warning";
@@ -86,7 +86,7 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

@@ -14,7 +14,10 @@
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Sign out</a>
+					<a class="nav-link" href="/logout">Sign out</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/warehouse">Warehouse</a>
 				</li>
 			</ul>
 		</div>
@@ -25,12 +28,26 @@
 
 <div class="container mt-5">
 	<div class="row">
-		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>
-		<div class="col-1 ml-auto">
+<!--		search bar-->
+		<div class="wrap mr-2">
+			<div class="search">
+				<input type="text" class="searchTerm" placeholder=" Client name or phone">
+				<button type="submit" class="searchButton">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>
+		</div>
+		<button class="badge badge-pill badge-success">Advanced Search</button>
+<!--		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>-->
+<!--		end of search bar-->
+		<div class="col-2 ml-auto">
 			<!-- Add Button trigger modal -->
-			<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
-				Add <i class="fas fa-users-cog"></i>
-			</button>
+			{{#if user.isAdmin}}
+				<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" data-target="#exampleModal">
+					Add <i class="fas fa-users-cog"></i>
+				</button>
+			{{/if}}
+			
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -42,7 +59,7 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form method="post" action="/api/workorder">
+							<form method="post" action="/api/workorder" id="form">
 								<div class="form-group">
 									<input class="form-control" name="clientName" id="clientName" aria-describedby="clientName">
 									<label for="clientName" class="font-weight-bold">ClientName</label>
@@ -83,21 +100,21 @@
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1" value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2" value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3" value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
 								<!--                                        end of process-->
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<input type="submit" class="btn btn-primary" value="Submit">
+									<input type="submit" class="btn btn-primary" id="submit" value="Submit">
 								</div>
 							</form>
 						</div>
@@ -109,9 +126,10 @@
 		</div>
 	</div>
 	<div class="row mt-4">
-		<table class="table table-striped">
+		<table id="data" class="table table-striped">
 			<thead>
 			<tr>
+				<th class="th-sm">Review Order</th>
 				<th class="th-sm">Client Name</th>
 				<th class="th-sm">Client Phone</th>
 				<th class="th-sm">Installation Date</th>
@@ -125,6 +143,7 @@
 			<tbody>
 			<!--                    single row-->
 			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
 				<th scope="row">Mike</th>
 				<td>(343)78923</td>
 				<td>12/78/2019</td>
@@ -132,18 +151,21 @@
 				<td><span class="badge badge-pill badge-warning">Pending</span></td>
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				<td><button class="badge badge-pill badge-success">Edit</button></td>
+<!--				<td><button class="badge badge-pill badge-success">Edit</button></td>-->
+				<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
 			</tr>
 			<tr id="address" class="">
+				<th></th>
 				<th>Client Address:</th>
-				<td colspan="3">789N 9th, AZ</td>
+				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="2">237S 5th, AZ</td>
+				<td colspan="3">237S 5th, AZ</td>
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
 			<!--                    single row-->
 			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
 				<th scope="row">Jack</th>
 				<td>(343)78923</td>
 				<td>12/78/2019</td>
@@ -154,16 +176,18 @@
 				<td><button class="badge badge-pill badge-success">Edit</button></td>
 			</tr>
 			<tr id="address" class="">
+				<th></th>
 				<th>Client Address:</th>
-				<td colspan="3">789N 9th, AZ</td>
+				<td colspan="2">789N 9th, AZ</td>
 				<th>Job Address:</th>
-				<td colspan="2">237S 5th, AZ</td>
+				<td colspan="3">237S 5th, AZ</td>
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 			<!--                    end of single row-->
 			<!--			single row-->
 		{{#each orders}}
 			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
 				<th scope="row">{{clientName}}</th>
 				<td>{{clientPhone}}</td>
 				<td>{{installationDate}}</td>
@@ -175,10 +199,11 @@
 			</tr>
 <!--			address-->
 			<tr id="address" class="">
+				<th></th>
 				<th>Client Address:</th>
-				<td colspan="3">{{clientAddress}}</td>
+				<td colspan="2">{{clientAddress}}</td>
 				<th>Job Address:</th>
-				<td colspan="2">{{jobAddress}}</td>
+				<td colspan="3">{{jobAddress}}</td>
 				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 			</tr>
 <!--			end of address-->
@@ -213,6 +238,29 @@
 </div>
 
 <style>
+	/*search bar*/
+	.searchTerm{
+		border-bottom-left-radius: 5px;
+		border-top-left-radius: 5px;
+		border: 3px green solid !important;
+	}
+
+	.searchButton{
+		color: white;
+		border-bottom-right-radius: 5px !important;
+		border-top-right-radius: 5px !important;
+		background-color: green;
+		margin-left: -8px;
+		border-bottom: 4px green solid;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		border-top: 5px green solid ;
+	}
+	.searchTerm, .searchButton{
+		height: 2.5rem !important;
+	}
+/*end of search bar*/
+
 	#address{
 		background: #323147;
 		font-size: small;
@@ -227,3 +275,36 @@
 		color: white;
 	}
 </style>
+	<script>
+
+    $(document).ready(function () {
+        // $('li').click(function () {
+        //     $(this).addClass('active').siblings().removeClass('active');
+        // });
+        $(document).ready(function () {
+            $('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
+            var rowsShown = 10;
+            var rowsTotal = $('#data tbody tr').length;
+            var numPages = rowsTotal / rowsShown;
+            for (i = 0; i < numPages; i++) {
+                var pageNum = i + 1;
+                let newLi = $('<li class="page-item">');
+                $(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
+                    $(".pagination").append(newLi);
+            }
+            $('#data tbody tr').hide();
+            $('#data tbody tr').slice(0, rowsShown).show();
+            $('#nav a:first').addClass('active');
+            $('#nav a').bind('click', function () {
+
+                $('#nav a').removeClass('active');
+                $(this).addClass('active');
+                var currPage = $(this).attr('rel');
+                var startItem = currPage * rowsShown;
+                var endItem = startItem + rowsShown;
+                $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+                    css('display', 'table-row').animate({ opacity: 1 }, 300);
+            });
+        });
+    }); 
+</script>

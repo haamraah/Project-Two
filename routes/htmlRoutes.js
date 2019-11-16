@@ -67,11 +67,27 @@ module.exports = function (app) {
   // route for user's dashboard
   app.get("/dashboard", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-      let userName = req.session.user.username;
+      let _user = req.session.user;
       db.Workorder.findAll()
         .then(workOrders =>
           res.render("dashboard", {
             orders: workOrders,
+            user: _user
+          }))
+        .catch(err => console.log(err))
+    } else {
+      res.redirect("/login");
+    }
+  });
+
+  // route for warehouse management
+  app.get("/warehouse", (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+      let userName = req.session.user.username;
+      db.Warehouse.findAll()
+        .then(materials =>
+          res.render("warehouse", {
+            inventory: materials,
             userName: userName.toUpperCase()
           }))
         .catch(err => console.log(err))
