@@ -76,8 +76,8 @@
 									<label for="clientName" class="font-weight-bold">ClientName</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="clientAddress" id="clientAddress"
-										aria-describedby="clientAddress" placeholder="Enter address">
+									<input class="form-control" name="clientAddress" id="clientAddress" aria-describedby="clientAddress"
+										placeholder="Enter address">
 									<label for="clientAddress" class="font-weight-bold">Client Address</label>
 								</div>
 								<div class="form-group">
@@ -85,7 +85,7 @@
 									<label for="clientPhone" class="font-weight-bold">Client Phone</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="installationDate" id="installDate"
+									<input type="date" class="form-control" name="installationDate" id="installDate"
 										placeholder="mm/dd/yyyy">
 									<label for="installDate" class="font-weight-bold">Installation Date</label>
 								</div>
@@ -124,20 +124,17 @@
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1"
-										value="Completed">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1" value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span
 											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2"
-										value="Pending">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2" value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span
 											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3"
-										value="Canceled">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3" value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span
 											class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
@@ -158,54 +155,56 @@
 	<div class="row mt-4">
 		<table id="data" class="table table-striped">
 			<thead>
-			<tr>
-				<th class="th-sm">Review Order</th>
-				<th class="th-sm">Client Name</th>
-				<th class="th-sm">Client Phone</th>
-				<th class="th-sm">Installation Date</th>
-				<th class="th-sm">Materials</th>
-				<th class="th-sm">Status</th>
-				<th class="th-sm">Installer Name</th>
-				<th class="th-sm">Note</th>
-				<th class="th-sm">Edit</th>
-				
-			</tr>
+				<tr>
+					<th class="th-sm">Review Order</th>
+					<th class="th-sm">Client Name</th>
+					<th class="th-sm">Client Phone</th>
+					<th class="th-sm">Installation Date</th>
+					<th class="th-sm">Materials</th>
+					<th class="th-sm">Status</th>
+					<th class="th-sm">Installer Name</th>
+					<th class="th-sm">Note</th>
+					<th class="th-sm">Edit</th>
+
+				</tr>
 			</thead>
 			<tbody>
-			<!--                    single row-->
-			
-			
-			<!--                    end of single row-->
-			<!--                    single row-->
-			
-			<!--                    end of single row-->
-			<!--			single row-->
-		{{#each orders}}
-			<tr>
-				<td><button class="badge badge-pill badge-primary">Review</button></td>
-				<th scope="row">{{clientName}}</th>
-				<td>{{clientPhone}}</td>
-				<td>{{installationDate}}</td>
-				<td>{{materials}}</td>
-				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
-				<td>{{installerName}}</td>
-				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				<td>
-				<button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button>
-				</td>
-				
+				<!--                    single row-->
 
-			</tr>
-<!--			address-->
-			<tr id="address" class="">
-				<th></th>
-				<th>Client Address:</th>
-				<td colspan="2">{{clientAddress}}</td>
-				<th>Job Address:</th>
-				<td colspan="3">{{jobAddress}}</td>
-				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
-			</tr>
-<!--			end of address-->
+
+				<!--                    end of single row-->
+				<!--                    single row-->
+
+				<!--                    end of single row-->
+				<!--			single row-->
+				{{#each orders}}
+				<tr>
+					<td><button class="badge badge-pill badge-primary">Review</button></td>
+					<th scope="row">{{clientName}}</th>
+					<td>{{clientPhone}}</td>
+					<td>{{installationDate}}</td>
+					<td>{{materials}}</td>
+					<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
+					<td>{{installerName}}</td>
+					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>
+					</td>
+					<td>
+						<button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal"
+							data-target="#exampleModal">Edit</button>
+					</td>
+
+
+				</tr>
+				<!--			address-->
+				<tr id="address" class="">
+					<th></th>
+					<th>Client Address:</th>
+					<td colspan="2">{{clientAddress}}</td>
+					<th>Job Address:</th>
+					<td colspan="3">{{jobAddress}}</td>
+					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+				</tr>
+				<!--			end of address-->
 
 				<!--read modal-->
 				<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel"
@@ -229,7 +228,7 @@
 				</div>
 				<!--end of read modal-->
 				{{else}}
-						<h1>No jobs available</h1>
+				<h1>No jobs available</h1>
 				{{/each}}
 				<!--			end of single row-->
 			</tbody>
@@ -262,7 +261,7 @@
 		height: 2.5rem !important;
 	}
 
-	#address{
+	#address {
 		background: #323147;
 		font-size: small;
 		padding: 0;
@@ -298,14 +297,14 @@
 			$('#nav a:first').addClass('active');
 			$('#nav a').bind('click', function () {
 
-                $('#nav a').removeClass('active');
-                $(this).addClass('active');
-                var currPage = $(this).attr('rel');
-                var startItem = currPage * rowsShown;
-                var endItem = startItem + rowsShown;
-                $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-                    css('display', 'table-row').animate({ opacity: 1 }, 300);
-            });
-        });
-    }); 
+				$('#nav a').removeClass('active');
+				$(this).addClass('active');
+				var currPage = $(this).attr('rel');
+				var startItem = currPage * rowsShown;
+				var endItem = startItem + rowsShown;
+				$('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+					css('display', 'table-row').animate({ opacity: 1 }, 300);
+			});
+		});
+	}); 
 </script>
