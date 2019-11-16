@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="page-header">
 		{{!-- <h1 class="m-4">HamJARs</h1> --}}
-		
+
 	</div>
 	<!--            navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,13 +29,13 @@
 			</ul>
 		</div>
 	</nav>
-	<hr>
+	<hr />
 </div>
 
 
 <div class="container mt-5">
 	<div class="row">
-<!--		search bar-->
+		<!--		search bar-->
 		<div class="wrap mr-2">
 			<div class="search">
 				<input type="text" class="searchTerm" placeholder=" Client name or phone">
@@ -45,16 +45,16 @@
 			</div>
 		</div>
 		<button class="badge badge-pill badge-success">Advanced Search</button>
-<!--		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>-->
-<!--		end of search bar-->
+		<!--		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>-->
+		<!--		end of search bar-->
 		<div class="col-2 ml-auto">
 			<!-- Add Button trigger modal -->
 			{{#if user.isAdmin}}
-				<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" data-target="#exampleModal">
-					Add <i class="fas fa-users-cog"></i>
-				</button>
+			<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" data-target="#exampleModal">
+				Add <i class="fas fa-users-cog"></i>
+			</button>
 			{{/if}}
-			
+
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
@@ -69,32 +69,20 @@
 						<div class="modal-body">
 							<form method="post" action="/api/workorder" id="form">
 								<div class="form-group">
-									<input class="form-control" name="clientName" id="clientName"
-										aria-describedby="clientName">
+									<input class="form-control" name="clientName" id="clientName" aria-describedby="clientName">
 									<label for="clientName" class="font-weight-bold">ClientName</label>
 								</div>
 								<div class="form-group">
-<<<<<<< HEAD
 									<input class="form-control" name="clientAddress" id="clientAddress" aria-describedby="clientAddress"
 										placeholder="Enter address">
-=======
-									<input class="form-control" name="clientAddress" id="clientAddress"
-										aria-describedby="clientAddress" placeholder="Enter address">
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
 									<label for="clientAddress" class="font-weight-bold">Client Address</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="clientPhone" id="clientPhone"
-										placeholder="Phone number">
+									<input class="form-control" name="clientPhone" id="clientPhone" placeholder="Phone number">
 									<label for="clientPhone" class="font-weight-bold">Client Phone</label>
 								</div>
 								<div class="form-group">
-<<<<<<< HEAD
 									<input type="date" class="form-control" name="installationDate" id="installDate" placeholder="mm/dd/yyyy">
-=======
-									<input class="form-control" name="installationDate" id="installDate"
-										placeholder="mm/dd/yyyy">
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
 									<label for="installDate" class="font-weight-bold">Installation Date</label>
 								</div>
 
@@ -116,51 +104,33 @@
 									<label for="materials" class="font-weight-bold">Materials</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="comments" id="comments"
-										placeholder="Any quick note...">
+									<input class="form-control" name="comments" id="comments" placeholder="Any quick note...">
 									<label for="comments" class="font-weight-bold">Note</label>
 								</div>
 								<div class="form-group">
 									<label for="Installer">Installer</label>
 									<select class="form-control" id="Installer" name="installerName">
-										<option>Jackson</option>
-										<option>Peter</option>
-										<option>Danny</option>
-										<option>David</option>
+										<option>Hamrah</option>
+										<option>Shi Yu</option>
+										<option>Aaron</option>
+										<option>Jesus</option>
+										<option>Ridvan</option>
 									</select>
 								</div>
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-<<<<<<< HEAD
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-										value="option1">
-=======
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1"
-										value="Completed">
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1" value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span
 											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-<<<<<<< HEAD
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-										value="option2">
-=======
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2"
-										value="Pending">
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2" value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span
 											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-<<<<<<< HEAD
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-										value="option3">
-=======
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3"
-										value="Canceled">
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3" value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span
 											class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
@@ -181,8 +151,8 @@
 	<div class="row mt-4">
 		<table id="data" class="table table-striped">
 			<thead>
-<<<<<<< HEAD
 				<tr>
+					<th class="th-sm">Review Order</th>
 					<th class="th-sm">Client Name</th>
 					<th class="th-sm">Client Phone</th>
 					<th class="th-sm">Installation Date</th>
@@ -190,12 +160,15 @@
 					<th class="th-sm">Status</th>
 					<th class="th-sm">Installer Name</th>
 					<th class="th-sm">Note</th>
+					{{#if user.isAdmin}}
 					<th class="th-sm">Edit</th>
+					{{/if}}
 				</tr>
 			</thead>
 			<tbody>
 				<!--                    single row-->
 				<tr>
+					<td><button class="badge badge-pill badge-primary">Review</button></td>
 					<th scope="row">Mike</th>
 					<td>(343)78923</td>
 					<td>12/78/2019</td>
@@ -204,18 +177,28 @@
 					<td>Jack</td>
 					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>
 					</td>
-					<td><button class="badge badge-pill badge-success">Edit</button></td>
+					{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal"
+							data-target="#exampleModal">Edit</button></td>
+					{{/if}}
 				</tr>
 				<tr id="address" class="">
+					<th></th>
 					<th>Client Address:</th>
-					<td colspan="3">789N 9th, AZ</td>
+					<td colspan="2">789N 9th, AZ</td>
 					<th>Job Address:</th>
+					{{#if user.isAdmin}}
+					<td colspan="3">237S 5th, AZ</td>
+					{{else}}
 					<td colspan="2">237S 5th, AZ</td>
+					{{/if}}
+
 					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 				</tr>
 				<!--                    end of single row-->
 				<!--                    single row-->
 				<tr>
+					<td><button class="badge badge-pill badge-primary">Review</button></td>
 					<th scope="row">Jack</th>
 					<td>(343)78923</td>
 					<td>12/78/2019</td>
@@ -224,19 +207,28 @@
 					<td>Jack</td>
 					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>
 					</td>
-					<td><button class="badge badge-pill badge-success">Edit</button></td>
+					{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal"
+							data-target="#exampleModal">Edit</button></td>
+					{{/if}}
 				</tr>
 				<tr id="address" class="">
+					<th></th>
 					<th>Client Address:</th>
-					<td colspan="3">789N 9th, AZ</td>
+					<td colspan="2">789N 9th, AZ</td>
 					<th>Job Address:</th>
+					{{#if user.isAdmin}}
+					<td colspan="3">237S 5th, AZ</td>
+					{{else}}
 					<td colspan="2">237S 5th, AZ</td>
+					{{/if}}
 					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 				</tr>
 				<!--                    end of single row-->
 				<!--			single row-->
 				{{#each orders}}
 				<tr>
+					<td><button class="badge badge-pill badge-primary">Review</button></td>
 					<th scope="row">{{clientName}}</th>
 					<td>{{clientPhone}}</td>
 					<td>{{installationDate}}</td>
@@ -245,115 +237,22 @@
 					<td>{{installerName}}</td>
 					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>
 					</td>
-					<td><button class="badge badge-pill badge-success">Edit</button></td>
+					{{#if user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal"
+							data-target="#exampleModal">Edit</button></td>
+					{{/if}}
+
 				</tr>
 				<!--			address-->
 				<tr id="address" class="">
+					<th></th>
 					<th>Client Address:</th>
-					<td colspan="3">{{clientAddress}}</td>
+					<td colspan="2">{{clientAddress}}</td>
 					<th>Job Address:</th>
-					<td colspan="2">{{jobAddress}}</td>
+					<td colspan="3">{{jobAddress}}</td>
 					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
 				</tr>
 				<!--			end of address-->
-=======
-			<tr>
-				<th class="th-sm">Review Order</th>
-				<th class="th-sm">Client Name</th>
-				<th class="th-sm">Client Phone</th>
-				<th class="th-sm">Installation Date</th>
-				<th class="th-sm">Materials</th>
-				<th class="th-sm">Status</th>
-				<th class="th-sm">Installer Name</th>
-				<th class="th-sm">Note</th>
-				{{#if user.isAdmin}}
-					<th class="th-sm">Edit</th>
-				{{/if}}
-			</tr>
-			</thead>
-			<tbody>
-			<!--                    single row-->
-			<tr>
-				<td><button class="badge badge-pill badge-primary">Review</button></td>
-				<th scope="row">Mike</th>
-				<td>(343)78923</td>
-				<td>12/78/2019</td>
-				<td>Green</td>
-				<td><span class="badge badge-pill badge-warning">Pending</span></td>
-				<td>Jack</td>
-				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-				{{/if}}
-			</tr>
-			<tr id="address" class="">
-				<th></th>
-				<th>Client Address:</th>
-				<td colspan="2">789N 9th, AZ</td>
-				<th>Job Address:</th>
-				{{#if user.isAdmin}}
-					<td colspan="3">237S 5th, AZ</td>
-				{{else}}
-					<td colspan="2">237S 5th, AZ</td>
-				{{/if}}
-
-				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
-			</tr>
-			<!--                    end of single row-->
-			<!--                    single row-->
-			<tr>
-				<td><button class="badge badge-pill badge-primary">Review</button></td>
-				<th scope="row">Jack</th>
-				<td>(343)78923</td>
-				<td>12/78/2019</td>
-				<td>Green</td>
-				<td><span class="badge badge-pill badge-danger">Canceled</span></td>
-				<td>Jack</td>
-				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-				{{/if}}
-			</tr>
-			<tr id="address" class="">
-				<th></th>
-				<th>Client Address:</th>
-				<td colspan="2">789N 9th, AZ</td>
-				<th>Job Address:</th>
-				{{#if user.isAdmin}}
-					<td colspan="3">237S 5th, AZ</td>
-				{{else}}
-					<td colspan="2">237S 5th, AZ</td>
-				{{/if}}
-				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
-			</tr>
-			<!--                    end of single row-->
-			<!--			single row-->
-		{{#each orders}}
-			<tr>
-				<td><button class="badge badge-pill badge-primary">Review</button></td>
-				<th scope="row">{{clientName}}</th>
-				<td>{{clientPhone}}</td>
-				<td>{{installationDate}}</td>
-				<td>{{materials}}</td>
-				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
-				<td>{{installerName}}</td>
-				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-				{{/if}}
-
-			</tr>
-<!--			address-->
-			<tr id="address" class="">
-				<th></th>
-				<th>Client Address:</th>
-				<td colspan="2">{{clientAddress}}</td>
-				<th>Job Address:</th>
-				<td colspan="3">{{jobAddress}}</td>
-				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
-			</tr>
-<!--			end of address-->
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
 
 				<!--read modal-->
 				<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel"
@@ -386,17 +285,14 @@
 </div>
 
 <style>
-<<<<<<< HEAD
-	#address {
-=======
 	/*search bar*/
-	.searchTerm{
+	.searchTerm {
 		border-bottom-left-radius: 5px;
 		border-top-left-radius: 5px;
 		border: 3px green solid !important;
 	}
 
-	.searchButton{
+	.searchButton {
 		color: white;
 		border-bottom-right-radius: 5px !important;
 		border-top-right-radius: 5px !important;
@@ -405,15 +301,17 @@
 		border-bottom: 4px green solid;
 		padding-left: 1rem;
 		padding-right: 1rem;
-		border-top: 5px green solid ;
+		border-top: 5px green solid;
 	}
-	.searchTerm, .searchButton{
+
+	.searchTerm,
+	.searchButton {
 		height: 2.5rem !important;
 	}
-/*end of search bar*/
 
-	#address{
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
+	/*end of search bar*/
+
+	#address {
 		background: #323147;
 		font-size: small;
 		padding: 0;
@@ -426,41 +324,37 @@
 	.fa-map-marked-alt {
 		color: white;
 	}
-<<<<<<< HEAD
 </style>
-=======
-</style>
-	<script>
-// Pagination function
-    $(document).ready(function () {
-        // $('li').click(function () {
-        //     $(this).addClass('active').siblings().removeClass('active');
-        // });
-        $(document).ready(function () {
-            $('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
-            var rowsShown = 10;
-            var rowsTotal = $('#data tbody tr').length;
-            var numPages = rowsTotal / rowsShown;
-            for (i = 0; i < numPages; i++) {
-                var pageNum = i + 1;
-                let newLi = $('<li class="page-item">');
-                $(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
-                    $(".pagination").append(newLi);
-            }
-            $('#data tbody tr').hide();
-            $('#data tbody tr').slice(0, rowsShown).show();
-            $('#nav a:first').addClass('active');
-            $('#nav a').bind('click', function () {
+<script>
+	// Pagination function
+	$(document).ready(function () {
+		// $('li').click(function () {
+		//     $(this).addClass('active').siblings().removeClass('active');
+		// });
+		$(document).ready(function () {
+			$('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
+			var rowsShown = 10;
+			var rowsTotal = $('#data tbody tr').length;
+			var numPages = rowsTotal / rowsShown;
+			for (i = 0; i < numPages; i++) {
+				var pageNum = i + 1;
+				let newLi = $('<li class="page-item">');
+				$(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
+				$(".pagination").append(newLi);
+			}
+			$('#data tbody tr').hide();
+			$('#data tbody tr').slice(0, rowsShown).show();
+			$('#nav a:first').addClass('active');
+			$('#nav a').bind('click', function () {
 
-                $('#nav a').removeClass('active');
-                $(this).addClass('active');
-                var currPage = $(this).attr('rel');
-                var startItem = currPage * rowsShown;
-                var endItem = startItem + rowsShown;
-                $('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-                    css('display', 'table-row').animate({ opacity: 1 }, 300);
-            });
-        });
-    }); 
+				$('#nav a').removeClass('active');
+				$(this).addClass('active');
+				var currPage = $(this).attr('rel');
+				var startItem = currPage * rowsShown;
+				var endItem = startItem + rowsShown;
+				$('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+					css('display', 'table-row').animate({ opacity: 1 }, 300);
+			});
+		});
+	}); 
 </script>
->>>>>>> fd9228c75d864a66b50b28522d27c42c9d8f5f72
