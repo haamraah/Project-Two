@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
 
     // color/style of material
-    materialStyle: {
+    materialSize: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {

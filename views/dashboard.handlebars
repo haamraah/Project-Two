@@ -14,7 +14,10 @@
 					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Sign out</a>
+					<a class="nav-link" href="/logout">Sign out</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/warehouse">Warehouse</a>
 				</li>
 			</ul>
 		</div>
@@ -28,9 +31,12 @@
 		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>
 		<div class="col-1 ml-auto">
 			<!-- Add Button trigger modal -->
-			<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
+			{{#if user.isAdmin}}
+			<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" data-target="#exampleModal">
 				Add <i class="fas fa-users-cog"></i>
 			</button>
+{{/if}}
+			
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -83,15 +89,15 @@
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1" value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2" value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3" value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
 								<!--                                        end of process-->
@@ -211,6 +217,14 @@
 		</table>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	if 
+
+}
+})
+</script>
 
 <style>
 	#address{
