@@ -20,8 +20,9 @@ module.exports = function (app) {
   // route for user signup
   app.route("/signup")
     .get((req, res) => {
+      if (req.session.user && req.session.user.isAdmin){
       res.sendFile(process.cwd() + "/public/signup.html");
-    })
+    }})
     .post((req, res) => {
       db.User.create({
         username: req.body.username,
