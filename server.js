@@ -67,7 +67,7 @@ const hbs = exphbs.create({
   helpers: {
     checkStatus: function (property) {
       switch(property) {
-      case "Competed":
+      case "Completed":
         return "bg-success";
       case "Pending":
         return "bg-warning";
