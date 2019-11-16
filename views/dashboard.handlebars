@@ -60,7 +60,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Create</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -227,9 +227,10 @@
 				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
-				{{/if}}
+				<td>{{#if ../user.isAdmin}}
+				<button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button>
+				{{/if}}</td>
+				
 
 			</tr>
 <!--			address-->
@@ -265,7 +266,7 @@
 				</div>
 				<!--end of read modal-->
 				{{else}}
-				<!--			<P>No  jobs available</P>-->
+						<h1>No jobs available</h1>
 				{{/each}}
 				<!--			end of single row-->
 			</tbody>

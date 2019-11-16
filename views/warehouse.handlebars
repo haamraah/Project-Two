@@ -42,33 +42,42 @@
 
 
 
-          <div class="md-form mb-5">
-            <input type="text" id="inputMaterialName" class="form-control validate" placeholder="Material Name">
-            <label data-error="wrong" data-success="right" for="inputMaterialName"></label>
-          </div>
+          <div class="modal-body">
+							<form method="post" action="/api/warehouse" id="form">
+								<div class="form-group">
+									<input class="form-control" name="materialName" id="materialName"
+										aria-describedby="materialName" placeholder="Material Name">
+									<label for="materialName" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialSize" id="materialSize"
+										aria-describedby="clientAddress" placeholder="Material Size">
+									<label for="materialSize" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialQuantity" id="materialQuantity"
+										placeholder="Material Quantity">
+									<label for="materialQuantity" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialPrice" id="materialPrice"
+										placeholder="Material Price">
+									<label for="materialPrice" class="font-weight-bold"></label>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<input type="submit" class="btn btn-primary" id="submit" value="Submit">
+								</div>
+							</form>
+						</div>
 
-          <div class="md-form mb-5">
-            <input type="text" id="inputSize" class="form-control validate" placeholder="Material Size">
-            <label data-error="wrong" data-success="right" for="inputSize"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            <input type="text" id="inputQuantity" class="form-control" placeholder="Material Quantity">
-            <label data-error="wrong" data-success="right" for="inputQuantity"></label>
-          </div>
-
-          <div class="md-form mb-5">
-            <input type="text" id="inputPrice" class="form-control validate" placeholder="Material Price">
-            <label data-error="wrong" data-success="right" for="inputPrice"></label>
-          </div>
+					</div>
+				</div>
+			</div>
 
 
         </div>
       </div>
-      <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
-        <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal">Add Materials
-          <i class="fas fa-paper-plane-o ml-1"></i>
-        </button>
       </div>
     </div>
   </div>
@@ -101,17 +110,12 @@
 
         <div class="md-form mb-5">
           <input type="text" id="formOfficeEdit1" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="formOfficeEdit1">Material Quantity</label>
+          <label data-error="wrong" data-success="right" for="formOfficeEdit1">Material Quantity (sq.ft)</label>
         </div>
 
         <div class="md-form mb-5">
           <input type="text" id="formAgeEdit1" class="form-control validate">
           <label data-error="wrong" data-success="right" for="formAgeEdit1">Material Price</label>
-        </div>
-
-        <div class="md-form mb-5">
-          <input type="text" id="formDateEdit1" class="form-control datepicker">
-          <label data-error="wrong" data-success="right" for="formDateEdit1">Update Date</label>
         </div>
 
       </div>
@@ -172,7 +176,7 @@
       <th class="th-sm">Material Price
 
       </th>
-      <th class="th-sm">Update Date
+      
 
     </tr>
   </thead>
@@ -194,7 +198,7 @@
       <td>3/8 in. x 2 1/4 in. Dark</td>
       <td>1500 sq. ft.</td>
       <td>3.00/sq. ft.</td>
-      <td>11/15/2019</td>
+      
     </tr>
   </tbody>
   <tfoot>

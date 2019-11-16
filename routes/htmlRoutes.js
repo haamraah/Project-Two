@@ -84,12 +84,12 @@ module.exports = function (app) {
   // route for warehouse management
   app.get("/warehouse", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-      let userName = req.session.user.username;
+      let _user = req.session.user.username;
       db.Warehouse.findAll()
         .then(materials =>
           res.render("warehouse", {
             inventory: materials,
-            userName: userName.toUpperCase()
+            user: _user
           }))
         .catch(err => console.log(err))
     } else {
