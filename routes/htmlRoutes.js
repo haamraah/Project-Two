@@ -83,6 +83,7 @@ module.exports = function (app) {
 
   // route for warehouse management
   app.get("/warehouse", (req, res) => {
+    if (req.session.user.isAdmin){
     if (req.session.user && req.cookies.user_sid) {
       let _user = req.session.user.username;
       db.Warehouse.findAll()
@@ -95,7 +96,7 @@ module.exports = function (app) {
     } else {
       res.redirect("/login");
     }
-  });
+  }});
 
   // route for user logout
   app.get("/logout", (req, res) => {

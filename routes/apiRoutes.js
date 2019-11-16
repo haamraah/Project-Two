@@ -53,7 +53,7 @@ module.exports = function(app) {
 
   app.get("/api/warehouse", function(req, res) {
     db.Warehouse.findAll({}).then(function(dbExamples) {
-      res.redirect("/warehouse")
+      res.json(dbExamples);
     });
   });
 
