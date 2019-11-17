@@ -1,11 +1,10 @@
 <div class="container-fluid">
 	<div class="page-header">
 		{{!-- <h1 class="m-4">HamJARs</h1> --}}
-
 	</div>
 	<!--            navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand ml-2" href="#">{{userName}}</a>
+		<a class="navbar-brand ml-2" href="#"><h4>{{user.username}}</h4></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -124,11 +123,11 @@
 								<div class="form-group">
 									<label for="Installer">Installer</label>
 									<select class="form-control" id="Installer" name="installerName">
-										<option id="Hamrah">Hamrah</option>
-										<option id="Shiyu">Shiyu</option>
-										<option id="Aaron">Aaron</option>
-										<option id="Jesus">Jesus</option>
-										<option id="Ridvan">Ridvan</option>
+										<option value="Hamrah">Hamrah</option>
+										<option value="Shiyu">Shiyu</option>
+										<option value="Aaron">Aaron</option>
+										<option value="Jesus">Jesus</option>
+										<option value="Ridvan">Ridvan</option>
 									</select>
 								</div>
 
@@ -152,6 +151,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 									<input type="submit" class="btn btn-primary" id="submit" value="Submit">
+									<button type="button" class="btn btn-danger text-white" id="update" data-dismiss="modal">Update</button>
 								</div>
 							</form>
 						</div>
@@ -164,80 +164,6 @@
 	</div>
 	<div class="row mt-4">
 		<table id="data" class="table table-striped">
-<!--<<<<<<< HEAD-->
-<!--			<thead>-->
-<!--				<tr>-->
-<!--					<th class="th-sm">Review Order</th>-->
-<!--					<th class="th-sm">Client Name</th>-->
-<!--					<th class="th-sm">Client Phone</th>-->
-<!--					<th class="th-sm">Installation Date</th>-->
-<!--					<th class="th-sm">Materials</th>-->
-<!--					<th class="th-sm">Status</th>-->
-<!--					<th class="th-sm">Installer Name</th>-->
-<!--					<th class="th-sm">Note</th>-->
-<!--					<th class="th-sm">Edit</th>-->
-
-<!--				</tr>-->
-<!--			</thead>-->
-<!--			<tbody>-->
-
-<!--				&lt;!&ndash;			single row&ndash;&gt;-->
-<!--				{{#each orders}}-->
-<!--				<tr>-->
-<!--					<td><button class="badge badge-pill badge-primary">Review</button></td>-->
-<!--					<th scope="row">{{clientName}}</th>-->
-<!--					<td>{{clientPhone}}</td>-->
-<!--					<td>{{installationDate}}</td>-->
-<!--					<td>{{materials}}</td>-->
-<!--					<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>-->
-<!--					<td>{{installerName}}</td>-->
-<!--					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>-->
-<!--					</td>-->
-<!--					<td>-->
-<!--						<button type="button" class="badge badge-pill badge-success edit" id={{id}} data-toggle="modal"-->
-<!--							data-target="#exampleModal" >Edit</button>-->
-<!--					</td>-->
-
-
-<!--				</tr>-->
-<!--				&lt;!&ndash;			address&ndash;&gt;-->
-<!--				<tr id="address" class="">-->
-<!--					<th></th>-->
-<!--					<th>Client Address:</th>-->
-<!--					<td colspan="2">{{clientAddress}}</td>-->
-<!--					<th>Job Address:</th>-->
-<!--					<td colspan="3">{{jobAddress}}</td>-->
-<!--					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>-->
-<!--				</tr>-->
-<!--				&lt;!&ndash;			end of address&ndash;&gt;-->
-
-<!--				&lt;!&ndash;read modal&ndash;&gt;-->
-<!--				<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel"-->
-<!--					aria-hidden="true">-->
-<!--					<div class="modal-dialog" role="document">-->
-<!--						<div class="modal-content">-->
-<!--							<div class="modal-header">-->
-<!--								<h5 class="modal-title" id="readModalLabel">Order note: </h5>-->
-<!--								<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--									<span aria-hidden="true">&times;</span>-->
-<!--								</button>-->
-<!--							</div>-->
-<!--							<div class="modal-body">-->
-<!--								<p>{{comments}}</p>-->
-<!--							</div>-->
-<!--							<div class="modal-footer">-->
-<!--								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				&lt;!&ndash;end of read modal&ndash;&gt;-->
-<!--				{{else}}-->
-<!--				<h1>No jobs available</h1>-->
-<!--				{{/each}}-->
-<!--				&lt;!&ndash;			end of single row&ndash;&gt;-->
-<!--			</tbody>-->
-<!--=======-->
 			{{!-- <thead> --}}
 			<tr>
 				<th class="th-sm">Review Order</th>
@@ -249,7 +175,6 @@
 				<th class="th-sm">Installer Name</th>
 				<th class="th-sm">Note</th>
 				<th class="th-sm">Edit</th>
-
 			</tr>
 			{{#each orders}}
 			<tr>
@@ -258,12 +183,9 @@
 				<td>{{clientPhone}}</td>
 				<td>{{installationDate}}</td>
 				<td>{{materials}}</td>
-				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
+				<td><span class="badge badge-pill {{checkStatus isComplete}} text-white" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
-				<td>
-					<button class="badge badge-pill badge-info" data-toggle="popover" title="Note:"
-						data-content={{this.comments}}>Read</button>
-				</td>
+				<td><button class="badge badge-pill badge-info" data-toggle="popover" title="Note:" data-content={{this.comments}}>Read</button></td>
 				<td>
 					<button type="button" class="badge badge-pill badge-success edit" id={{id}} data-toggle="modal" data-target="#exampleModal" >Edit</button>
 				</td>
@@ -365,7 +287,68 @@
 		color: white;
 	}
 </style>
+
 <script>
+	function searchFunction(x) {
+		// Declare variables
+		var input, filter, table, tr, td, i, txtValue;
+		if (x === 1) {
+			input = document.getElementById("searchName");
+		} else if (x === 2) {
+			input = document.getElementById("searchPhone");
+
+		}
+		filter = input.value.toUpperCase();
+		table = document.getElementById("data");
+		tr = table.getElementsByTagName("tr");
+
+		// Loop through all table rows, and hide those who don't match the search query
+		for (i = 1; i < tr.length; i += 2) {
+			td = tr[i].getElementsByTagName("td")[x];
+			{{!-- console.log(td, "td") --}}
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+					tr[i+1].style.display = "";
+
+				} else {
+					tr[i].style.display = "none";
+					tr[i+1].style.display = "none";
+
+				}
+			}
+		}
+	}
+	// Pagination function
+	$(document).ready(function () {
 
 
+
+		$('[data-toggle="popover"]').popover();
+
+		$('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
+		var rowsShown = 10;
+		var rowsTotal = $('#data tbody tr').length;
+		var numPages = rowsTotal / rowsShown;
+		for (i = 0; i < numPages; i++) {
+			var pageNum = i + 1;
+			let newLi = $('<li class="page-item">');
+			$(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
+			$(".pagination").append(newLi);
+		}
+		$('#data tbody tr').hide();
+		$('#data tbody tr').slice(0, rowsShown).show();
+		$('#nav a:first').addClass('active');
+		$('#nav a').bind('click', function () {
+
+			$('#nav a').removeClass('active');
+			$(this).addClass('active');
+			var currPage = $(this).attr('rel');
+			var startItem = currPage * rowsShown;
+			var endItem = startItem + rowsShown;
+			$('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+				css('display', 'table-row').animate({ opacity: 1 }, 300);
+		});
+	}); 
 </script>
