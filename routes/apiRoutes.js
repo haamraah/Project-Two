@@ -17,10 +17,10 @@ module.exports = function(app) {
 
   // Get order by id
   app.get("/api/workorder/:id", function(req, res) {
-    console.log("ID: "+req.params.id, db.Workorder.id);
-    db.Workorder.findAll(req.body, {
+    console.log("ID: "+req.params.id);
+    db.Workorder.findAll({
       where: {
-        clientName: req.params.id
+        id: req.params.id
       }
     }).then(function(order) {
       res.json(order);
@@ -30,7 +30,7 @@ module.exports = function(app) {
   // Update workorder
   app.put("/api/workorder/:id", function(req, res) {
     console.log("ID: "+req.params.id);
-    db.Workorder.update(req.body, {
+    db.Workorder.update({
       where: {
         id: req.params.id
       }

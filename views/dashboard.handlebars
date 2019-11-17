@@ -60,7 +60,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Add Client</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -69,7 +69,7 @@
 							<form method="post" action="/api/workorder" id="form">
 								<div class="form-group">
 									<input class="form-control" name="clientName" id="clientName"
-										aria-describedby="clientName">
+										aria-describedby="clientName" value="">
 									<label for="clientName" class="font-weight-bold">ClientName</label>
 								</div>
 								<div class="form-group">
@@ -103,28 +103,28 @@
 								<div class="form-group">
 									<label for="Installer">Installer</label>
 									<select class="form-control" id="Installer" name="installerName">
-										<option>Jackson</option>
-										<option>Peter</option>
-										<option>Danny</option>
-										<option>David</option>
+										<option value="Jackson" id="Jackson">Jackson</option>
+										<option value="Peter" id="Peter">Peter</option>
+										<option value="Danny" id="Danny">Danny</option>
+										<option value="David" id="David">David</option>
 									</select>
 								</div>
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1"
+									<input class="form-check-input" type="radio" name="isComplete" id="Completed"
 										value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span
 											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2"
+									<input class="form-check-input" type="radio" name="isComplete" id="Pending"
 										value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span
 											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3"
+									<input class="form-check-input" type="radio" name="isComplete" id="Canceled"
 										value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span
 											class="badge badge-pill badge-danger">Canceled</span></label>
@@ -172,7 +172,7 @@
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
 				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+					<td><button type="button" class="badge badge-pill badge-success edit"  data-toggle="modal" data-target="#exampleModal">Edit</button></td>
 				{{/if}}
 			</tr>
 			<tr id="address" class="">
@@ -200,7 +200,7 @@
 				<td>Jack</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
 				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+					<td><button type="button" class="badge badge-pill badge-success edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
 				{{/if}}
 			</tr>
 			<tr id="address" class="">
@@ -227,8 +227,8 @@
 				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button></td>
-				{{#if user.isAdmin}}
-					<td><button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal" data-target="#exampleModal">Edit</button></td>
+				{{#if ../user.isAdmin}}
+					<td><button type="button" class="badge badge-pill badge-success edit" data-toggle="modal" data-target="#exampleModal" id={{id}}>Edit</button></td>
 				{{/if}}
 
 			</tr>
