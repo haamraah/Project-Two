@@ -27,14 +27,16 @@ module.exports = function(app) {
 
   // Update workorder
   app.put("/api/workorder/:id", function(req, res) {
-    console.log("ID: "+req.params.id);
-    db.Workorder.update({
+    console.log(req.body);
+    db.Workorder.update(req.body,{
       where: {
-        id: req.params.id
+        id: req.body.id
       }
-    }).then(function(rowsUpdated) {
-      res.redirect("/dashboard");
+    }).then(function(update) {
+      req.method = 'GET';
+      res.redirect('/dashboard');
     });
+
   });
 
   // Delete a workorder by id
