@@ -54,9 +54,8 @@ $(document).ready(function(){
             url: `http://localhost:3000/api/workorder/${data.id}`, // A valid URL
             headers: {"X-HTTP-Method-Override": "PUT"}, // X-HTTP-Method-Override set to PUT.
             data: data, // Some data e.g. Valid JSON as a string
-            // success: window.location.reload(),
-        })
-          // .then( window.location.reload())
+            success: window.location.reload(),
+        }).then( window.location.reload())
 
     });
 
