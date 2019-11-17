@@ -7,7 +7,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false,
       get: function() {
-        return moment.utc(this.getDataValue("installationDate")).format("YYYY-MM-DD");
+        return moment
+          .utc(this.getDataValue("installationDate"))
+          .format("YYYY-MM-DD");
       },
       validate: {
         len: [1]
