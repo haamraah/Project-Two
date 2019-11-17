@@ -3,9 +3,10 @@ $(document).ready(function(){
 
     console.log("document loaded!!.....");
     $(document).on('click','.edit',function(e){
+
         e.preventDefault();
         URL = `http://localhost:3000/api/workorder/${$(this).attr("id")}`;
-        console.log(URL);
+        console.log("EDIT: "+URL);
 
         $.ajax({
             type: 'GET',

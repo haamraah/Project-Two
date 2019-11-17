@@ -7,7 +7,6 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-
   // Create a new workorder
   app.post("/api/workorder", function(req, res) {
     db.Workorder.create(req.body).then((order) => {
@@ -17,7 +16,6 @@ module.exports = function(app) {
 
   // Get order by id
   app.get("/api/workorder/:id", function(req, res) {
-    console.log("ID: "+req.params.id);
     db.Workorder.findAll({
       where: {
         id: req.params.id
@@ -60,14 +58,14 @@ module.exports = function(app) {
 
   // Create a new material in warehouse
   app.post("/api/warehouse", function(req, res) {
-    db.Warehouse.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
+    db.Warehouse.create(req.body).then((order) => {
+      // res.json(order);
+      res.redirect("/warehouse")});
   });
 
   // Update material in warehouse
   app.put("/api/warehouse/:id", function(req, res) {
-    db.Warehouse.update(req.body, {
+    db.Warehouse.update({
       where: {
         id: req.params.id
       }

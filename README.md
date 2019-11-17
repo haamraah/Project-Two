@@ -1,4 +1,4 @@
-# Project-Two
+# HamJARS Inc.
 ## Dependencies: 
 * "dotenv": "^8.0.0",
 * "express": "^4.17.0",
@@ -13,3 +13,4 @@
 * "eslint-plugin-prettier": "^3.1.0",
 * "mocha": "^6.1.4",
 * "prettier": "^1.17.1"
+

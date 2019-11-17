@@ -3,6 +3,7 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Workorders', [{
+            installationDate: '2019-09-10 06:35:39',
             clientName: 'Shi YU',
             clientPhone: '5856577',
             clientAddress: '123 North ave',
@@ -11,7 +12,6 @@ module.exports = {
             materials: 'carpet green',
             isComplete: 'Pending',
             comments: 'We are going to need more installers',
-            creationDate: new Date(),
             createdAt: new Date(),
             updatedAt: new Date()
         }], {});

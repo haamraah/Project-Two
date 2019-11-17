@@ -20,8 +20,9 @@ module.exports = function (app) {
   // route for user signup
   app.route("/signup")
     .get((req, res) => {
+      if (req.session.user && req.session.user.isAdmin){
       res.sendFile(process.cwd() + "/public/signup.html");
-    })
+    }})
     .post((req, res) => {
       db.User.create({
         username: req.body.username,
@@ -83,19 +84,20 @@ module.exports = function (app) {
 
   // route for warehouse management
   app.get("/warehouse", (req, res) => {
+    if (req.session.user.isAdmin){
     if (req.session.user && req.cookies.user_sid) {
-      let userName = req.session.user.username;
+      let _user = req.session.user.username;
       db.Warehouse.findAll()
         .then(materials =>
           res.render("warehouse", {
             inventory: materials,
-            userName: userName.toUpperCase()
+            user: _user
           }))
         .catch(err => console.log(err))
     } else {
       res.redirect("/login");
     }
-  });
+  }});
 
   // route for user logout
   app.get("/logout", (req, res) => {

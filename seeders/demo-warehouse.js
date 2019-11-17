@@ -4,7 +4,7 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.bulkInsert('Warehouses', [{
             materialName: 'Carpet',
-            materialStyle: 'color white',
+            materialSize: '500 ft',
             materialQuantity: '123',
             materialPrice: '24',
             createdAt: new Date(),
