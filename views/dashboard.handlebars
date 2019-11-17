@@ -63,7 +63,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Create</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Add Client</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -91,15 +91,6 @@
 									<label for="installDate" class="font-weight-bold">Installation Date</label>
 								</div>
 
-								{{!-- <div class="md-form mb-5">
-									<input type="date" id="inputDate" class="form-control" placeholder="Select Date">
-									<label data-error="wrong" data-success="right" for="inputDate"></label>
-								</div> --}}
-
-
-
-
-
 								<div class="form-group">
 									<input class="form-control" name="jobAddress" id="jobAddress">
 									<label for="jobAddress" class="font-weight-bold">Job Address</label>
@@ -116,30 +107,27 @@
 								<div class="form-group">
 									<label for="Installer">Installer</label>
 									<select class="form-control" id="Installer" name="installerName">
-										<option>Hamrah</option>
-										<option>Shi Yu</option>
-										<option>Aaron</option>
-										<option>Jesus</option>
-										<option>Ridvan</option>
+										<option id="Hamrah">Hamrah</option>
+										<option id="Shiyu">Shiyu</option>
+										<option id="Aaron">Aaron</option>
+										<option id="Jesus">Jesus</option>
+										<option id="Ridvan">Ridvan</option>
 									</select>
 								</div>
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1"
-										value="Completed">
+									<input class="form-check-input" type="radio" name="isComplete" id="Completed" value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span
 											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2"
-										value="Pending">
+									<input class="form-check-input" type="radio" name="isComplete" id="Pending" value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span
 											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3"
-										value="Canceled">
+									<input class="form-check-input" type="radio" name="isComplete" id="Canceled" value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span
 											class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
@@ -159,8 +147,82 @@
 	</div>
 	<div class="row mt-4">
 		<table id="data" class="table table-striped">
+<!--<<<<<<< HEAD-->
+<!--			<thead>-->
+<!--				<tr>-->
+<!--					<th class="th-sm">Review Order</th>-->
+<!--					<th class="th-sm">Client Name</th>-->
+<!--					<th class="th-sm">Client Phone</th>-->
+<!--					<th class="th-sm">Installation Date</th>-->
+<!--					<th class="th-sm">Materials</th>-->
+<!--					<th class="th-sm">Status</th>-->
+<!--					<th class="th-sm">Installer Name</th>-->
+<!--					<th class="th-sm">Note</th>-->
+<!--					<th class="th-sm">Edit</th>-->
+
+<!--				</tr>-->
+<!--			</thead>-->
+<!--			<tbody>-->
+
+<!--				&lt;!&ndash;			single row&ndash;&gt;-->
+<!--				{{#each orders}}-->
+<!--				<tr>-->
+<!--					<td><button class="badge badge-pill badge-primary">Review</button></td>-->
+<!--					<th scope="row">{{clientName}}</th>-->
+<!--					<td>{{clientPhone}}</td>-->
+<!--					<td>{{installationDate}}</td>-->
+<!--					<td>{{materials}}</td>-->
+<!--					<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>-->
+<!--					<td>{{installerName}}</td>-->
+<!--					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>-->
+<!--					</td>-->
+<!--					<td>-->
+<!--						<button type="button" class="badge badge-pill badge-success edit" id={{id}} data-toggle="modal"-->
+<!--							data-target="#exampleModal" >Edit</button>-->
+<!--					</td>-->
+
+
+<!--				</tr>-->
+<!--				&lt;!&ndash;			address&ndash;&gt;-->
+<!--				<tr id="address" class="">-->
+<!--					<th></th>-->
+<!--					<th>Client Address:</th>-->
+<!--					<td colspan="2">{{clientAddress}}</td>-->
+<!--					<th>Job Address:</th>-->
+<!--					<td colspan="3">{{jobAddress}}</td>-->
+<!--					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>-->
+<!--				</tr>-->
+<!--				&lt;!&ndash;			end of address&ndash;&gt;-->
+
+<!--				&lt;!&ndash;read modal&ndash;&gt;-->
+<!--				<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel"-->
+<!--					aria-hidden="true">-->
+<!--					<div class="modal-dialog" role="document">-->
+<!--						<div class="modal-content">-->
+<!--							<div class="modal-header">-->
+<!--								<h5 class="modal-title" id="readModalLabel">Order note: </h5>-->
+<!--								<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--									<span aria-hidden="true">&times;</span>-->
+<!--								</button>-->
+<!--							</div>-->
+<!--							<div class="modal-body">-->
+<!--								<p>{{comments}}</p>-->
+<!--							</div>-->
+<!--							<div class="modal-footer">-->
+<!--								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash;end of read modal&ndash;&gt;-->
+<!--				{{else}}-->
+<!--				<h1>No jobs available</h1>-->
+<!--				{{/each}}-->
+<!--				&lt;!&ndash;			end of single row&ndash;&gt;-->
+<!--			</tbody>-->
+<!--=======-->
 			{{!-- <thead> --}}
-			<tr "header">
+			<tr>
 				<th class="th-sm">Review Order</th>
 				<th class="th-sm">Client Name</th>
 				<th class="th-sm">Client Phone</th>
@@ -172,16 +234,6 @@
 				<th class="th-sm">Edit</th>
 
 			</tr>
-			{{!-- </thead> --}}
-			{{!-- <tbody> --}}
-			<!--                    single row-->
-
-
-			<!--                    end of single row-->
-			<!--                    single row-->
-
-			<!--                    end of single row-->
-			<!--			single row-->
 			{{#each orders}}
 			<tr>
 				<td><button class="badge badge-pill badge-primary">Review</button></td>
@@ -192,18 +244,12 @@
 				<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td>
-
-
 					<button class="badge badge-pill badge-info" data-toggle="popover" title="Note:"
 						data-content={{this.comments}}>Read</button>
 				</td>
-
 				<td>
-					<button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal"
-						data-target="#exampleModal">Edit</button>
+					<button type="button" class="badge badge-pill badge-success edit" id={{id}} data-toggle="modal" data-target="#exampleModal" >Edit</button>
 				</td>
-
-
 			</tr>
 			<!--			address-->
 			<tr id="address" class="">
@@ -220,36 +266,12 @@
 			{{/each}}
 			<!--			end of single row-->
 			{{!-- </tbody> --}}
+
 		</table>
 	</div>
 </div>
 
 <style>
-	/*search bar*/
-	.searchTerm {
-		border-bottom-left-radius: 5px;
-		border-top-left-radius: 5px;
-		border: 3px green solid !important;
-	}
-
-		{
-			{
-			 !-- .searchButton {
-				color: white;
-				border-bottom-right-radius: 5px !important;
-				border-top-right-radius: 5px !important;
-				background-color: green;
-				margin-left: -8px;
-				border-bottom: 4px green solid;
-				padding-left: 1rem;
-				padding-right: 1rem;
-				border-top: 5px green solid;
-			}
-
-			--
-		}
-	}
-
 	/* search filter css */
 	#searchName {
 		background-image: url('/css/searchicon.png');
