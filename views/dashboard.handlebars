@@ -1,11 +1,10 @@
 <div class="container-fluid">
 	<div class="page-header">
 		{{!-- <h1 class="m-4">HamJARs</h1> --}}
-
 	</div>
 	<!--            navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand ml-2" href="#">{{userName}}</a>
+		<a class="navbar-brand ml-2" href="#"><h4>{{user.username}}</h4></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -41,15 +40,14 @@
 		<!--		search bar-->
 		<div class="wrap mr-2">
 			<div class="search">
-				<input type="text" class="searchTerm" placeholder=" Client name or phone">
-				<button type="submit" class="searchButton">
-					<i class="fa fa-search"></i>
-				</button>
+
+				<input type="text" id="searchName" onkeyup="searchFunction(1)" placeholder="Search for names.."
+					title="Type in a name">
+				<input type="text" id="searchPhone" onkeyup="searchFunction(2)" placeholder="Search for Phone Number.."
+					title="Type in a name">
 			</div>
 		</div>
-		<button class="badge badge-pill badge-success">Advanced Search</button>
-		<!--		<button class="btn btn-success">Advanced Search <i class="fas fa-search"></i></button>-->
-		<!--		end of search bar-->
+
 		<div class="col-2 ml-auto">
 			<!-- Add Button trigger modal -->
 			{{#if user.isAdmin}}
@@ -64,7 +62,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Create</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Add Client</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -72,16 +70,18 @@
 						<div class="modal-body">
 							<form method="post" action="/api/workorder" id="form">
 								<div class="form-group">
-									<input class="form-control" name="clientName" id="clientName" aria-describedby="clientName">
+									<input class="form-control" name="clientName" id="clientName"
+										aria-describedby="clientName">
 									<label for="clientName" class="font-weight-bold">ClientName</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="clientAddress" id="clientAddress" aria-describedby="clientAddress"
-										placeholder="Enter address">
+									<input class="form-control" name="clientAddress" id="clientAddress"
+										aria-describedby="clientAddress" placeholder="Enter address">
 									<label for="clientAddress" class="font-weight-bold">Client Address</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="clientPhone" id="clientPhone" placeholder="Phone number">
+									<input class="form-control" name="clientPhone" id="clientPhone"
+										placeholder="Phone number">
 									<label for="clientPhone" class="font-weight-bold">Client Phone</label>
 								</div>
 								<div class="form-group">
@@ -89,15 +89,6 @@
 										placeholder="mm/dd/yyyy">
 									<label for="installDate" class="font-weight-bold">Installation Date</label>
 								</div>
-
-								{{!-- <div class="md-form mb-5">
-									<input type="date" id="inputDate" class="form-control" placeholder="Select Date">
-									<label data-error="wrong" data-success="right" for="inputDate"></label>
-								</div> --}}
-
-
-
-
 
 								<div class="form-group">
 									<input class="form-control" name="jobAddress" id="jobAddress">
@@ -108,33 +99,34 @@
 									<label for="materials" class="font-weight-bold">Materials</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="comments" id="comments" placeholder="Any quick note...">
+									<input class="form-control" name="comments" id="comments"
+										placeholder="Any quick note...">
 									<label for="comments" class="font-weight-bold">Note</label>
 								</div>
 								<div class="form-group">
 									<label for="Installer">Installer</label>
 									<select class="form-control" id="Installer" name="installerName">
-										<option>Hamrah</option>
-										<option>Shi Yu</option>
-										<option>Aaron</option>
-										<option>Jesus</option>
-										<option>Ridvan</option>
+										<option value="Hamrah">Hamrah</option>
+										<option value="Shiyu">Shiyu</option>
+										<option value="Aaron">Aaron</option>
+										<option value="Jesus">Jesus</option>
+										<option value="Ridvan">Ridvan</option>
 									</select>
 								</div>
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio1" value="Completed">
+									<input class="form-check-input" type="radio" name="isComplete" id="Completed" value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span
 											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio2" value="Pending">
+									<input class="form-check-input" type="radio" name="isComplete" id="Pending" value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span
 											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="inlineRadio3" value="Canceled">
+									<input class="form-check-input" type="radio" name="isComplete" id="Canceled" value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span
 											class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
@@ -142,6 +134,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 									<input type="submit" class="btn btn-primary" id="submit" value="Submit">
+									<button type="button" class="btn btn-danger text-white" id="update" data-dismiss="modal">Update</button>
 								</div>
 							</form>
 						</div>
@@ -154,113 +147,120 @@
 	</div>
 	<div class="row mt-4">
 		<table id="data" class="table table-striped">
-			<thead>
-				<tr>
-					<th class="th-sm">Review Order</th>
-					<th class="th-sm">Client Name</th>
-					<th class="th-sm">Client Phone</th>
-					<th class="th-sm">Installation Date</th>
-					<th class="th-sm">Materials</th>
-					<th class="th-sm">Status</th>
-					<th class="th-sm">Installer Name</th>
-					<th class="th-sm">Note</th>
-					<th class="th-sm">Edit</th>
+			{{!-- <thead> --}}
+			<tr>
+				<th class="th-sm">Review Order</th>
+				<th class="th-sm">Client Name</th>
+				<th class="th-sm">Client Phone</th>
+				<th class="th-sm">Installation Date</th>
+				<th class="th-sm">Materials</th>
+				<th class="th-sm">Status</th>
+				<th class="th-sm">Installer Name</th>
+				<th class="th-sm">Note</th>
+				<th class="th-sm">Edit</th>
+			</tr>
+			{{#each orders}}
+			<tr>
+				<td><button class="badge badge-pill badge-primary">Review</button></td>
+				<td scope="row">{{clientName}}</td>
+				<td>{{clientPhone}}</td>
+				<td>{{installationDate}}</td>
+				<td>{{materials}}</td>
+				<td><span class="badge badge-pill {{checkStatus isComplete}} text-white" id="status">{{isComplete}}</span></td>
+				<td>{{installerName}}</td>
+				<td><button class="badge badge-pill badge-info" data-toggle="popover" title="Note:" data-content={{this.comments}}>Read</button></td>
+				<td>
+					<button type="button" class="badge badge-pill badge-success edit" id={{id}} data-toggle="modal" data-target="#exampleModal" >Edit</button>
+				</td>
+			</tr>
+			<!--			address-->
+			<tr id="address" class="">
+				<th></th>
+				<th>Client Address:</th>
+				<td colspan="2">{{clientAddress}}</td>
+				<th>Job Address:</th>
+				<td colspan="3">{{jobAddress}}</td>
+				<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
+			</tr>
 
-				</tr>
-			</thead>
-			<tbody>
-				<!--                    single row-->
+			{{else}}
+			<h1>No jobs available</h1>
+			{{/each}}
+			<!--			end of single row-->
+			{{!-- </tbody> --}}
 
-
-				<!--                    end of single row-->
-				<!--                    single row-->
-
-				<!--                    end of single row-->
-				<!--			single row-->
-				{{#each orders}}
-				<tr>
-					<td><button class="badge badge-pill badge-primary">Review</button></td>
-					<th scope="row">{{clientName}}</th>
-					<td>{{clientPhone}}</td>
-					<td>{{installationDate}}</td>
-					<td>{{materials}}</td>
-					<td><span class="badge badge-pill {{checkStatus isComplete}}" id="status">{{isComplete}}</span></td>
-					<td>{{installerName}}</td>
-					<td><button class="badge badge-pill badge-info" data-toggle="modal" data-target="#readModal">Read</button>
-					</td>
-					<td>
-						<button type="button" class="badge badge-pill badge-success" id="edit" data-toggle="modal"
-							data-target="#exampleModal">Edit</button>
-					</td>
-
-
-				</tr>
-				<!--			address-->
-				<tr id="address" class="">
-					<th></th>
-					<th>Client Address:</th>
-					<td colspan="2">{{clientAddress}}</td>
-					<th>Job Address:</th>
-					<td colspan="3">{{jobAddress}}</td>
-					<td><a href="#"><i class="fas fa-map-marked-alt"></i></a></td>
-				</tr>
-				<!--			end of address-->
-
-				<!--read modal-->
-				<div class="modal fade" id="readModal" tabindex="-1" role="dialog" aria-labelledby="readModalLabel"
-					aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="readModalLabel">Order note: </h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<p>{{comments}}</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--end of read modal-->
-				{{else}}
-				<h1>No jobs available</h1>
-				{{/each}}
-				<!--			end of single row-->
-			</tbody>
 		</table>
 	</div>
 </div>
 
 <style>
-	/*search bar*/
-	.searchTerm {
-		border-bottom-left-radius: 5px;
-		border-top-left-radius: 5px;
-		border: 3px green solid !important;
+	/* search filter css */
+	#searchName {
+		background-image: url('/css/searchicon.png');
+		/* Add a search icon to input */
+		background-position: 10px 12px;
+		/* Position the search icon */
+		background-repeat: no-repeat;
+		/* Do not repeat the icon image */
+		width: 100%;
+		/* Full-width */
+		font-size: 16px;
+		/* Increase font-size */
+		padding: 12px 20px 12px 40px;
+		/* Add some padding */
+		border: 1px solid #ddd;
+		/* Add a grey border */
+		margin-bottom: 12px;
+		/* Add some space below the input */
 	}
 
-	.searchButton {
-		color: white;
-		border-bottom-right-radius: 5px !important;
-		border-top-right-radius: 5px !important;
-		background-color: green;
-		margin-left: -8px;
-		border-bottom: 4px green solid;
-		padding-left: 1rem;
-		padding-right: 1rem;
-		border-top: 5px green solid;
+	#searchPhone {
+		background-image: url('/css/searchicon.png');
+		/* Add a search icon to input */
+		background-position: 10px 12px;
+		/* Position the search icon */
+		background-repeat: no-repeat;
+		/* Do not repeat the icon image */
+		width: 100%;
+		/* Full-width */
+		font-size: 16px;
+		/* Increase font-size */
+		padding: 12px 20px 12px 40px;
+		/* Add some padding */
+		border: 1px solid #ddd;
+		/* Add a grey border */
+		margin-bottom: 12px;
+		/* Add some space below the input */
 	}
 
-	.searchTerm,
-	.searchButton {
-		height: 2.5rem !important;
+	#data {
+		border-collapse: collapse;
+		/* Collapse borders */
+		width: 100%;
+		/* Full-width */
+		border: 1px solid #ddd;
+		/* Add a grey border */
+		font-size: 18px;
+		/* Increase font-size */
 	}
 
+	#data th,
+	#data td {
+		text-align: left;
+		/* Left-align text */
+		padding: 12px;
+		/* Add padding */
+	}
+
+	#data tr {
+		/* Add a bottom border to all table rows */
+		border-bottom: 1px solid #ddd;
+	}
+
+	#data tr .header {
+		/* Add a grey background color to the table header and on hover */
+		background-color: #f1f1f1;
+	}
 	#address {
 		background: #323147;
 		font-size: small;
@@ -275,36 +275,68 @@
 		color: white;
 	}
 </style>
+
 <script>
+	function searchFunction(x) {
+		// Declare variables
+		var input, filter, table, tr, td, i, txtValue;
+		if (x === 1) {
+			input = document.getElementById("searchName");
+		} else if (x === 2) {
+			input = document.getElementById("searchPhone");
+
+		}
+		filter = input.value.toUpperCase();
+		table = document.getElementById("data");
+		tr = table.getElementsByTagName("tr");
+
+		// Loop through all table rows, and hide those who don't match the search query
+		for (i = 1; i < tr.length; i += 2) {
+			td = tr[i].getElementsByTagName("td")[x];
+			{{!-- console.log(td, "td") --}}
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+					tr[i+1].style.display = "";
+
+				} else {
+					tr[i].style.display = "none";
+					tr[i+1].style.display = "none";
+
+				}
+			}
+		}
+	}
 	// Pagination function
 	$(document).ready(function () {
-		// $('li').click(function () {
-		//     $(this).addClass('active').siblings().removeClass('active');
-		// });
-		$(document).ready(function () {
-			$('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
-			var rowsShown = 10;
-			var rowsTotal = $('#data tbody tr').length;
-			var numPages = rowsTotal / rowsShown;
-			for (i = 0; i < numPages; i++) {
-				var pageNum = i + 1;
-				let newLi = $('<li class="page-item">');
-				$(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
-				$(".pagination").append(newLi);
-			}
-			$('#data tbody tr').hide();
-			$('#data tbody tr').slice(0, rowsShown).show();
-			$('#nav a:first').addClass('active');
-			$('#nav a').bind('click', function () {
 
-				$('#nav a').removeClass('active');
-				$(this).addClass('active');
-				var currPage = $(this).attr('rel');
-				var startItem = currPage * rowsShown;
-				var endItem = startItem + rowsShown;
-				$('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-					css('display', 'table-row').animate({ opacity: 1 }, 300);
-			});
+
+
+		$('[data-toggle="popover"]').popover();
+
+		$('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
+		var rowsShown = 10;
+		var rowsTotal = $('#data tbody tr').length;
+		var numPages = rowsTotal / rowsShown;
+		for (i = 0; i < numPages; i++) {
+			var pageNum = i + 1;
+			let newLi = $('<li class="page-item">');
+			$(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
+			$(".pagination").append(newLi);
+		}
+		$('#data tbody tr').hide();
+		$('#data tbody tr').slice(0, rowsShown).show();
+		$('#nav a:first').addClass('active');
+		$('#nav a').bind('click', function () {
+
+			$('#nav a').removeClass('active');
+			$(this).addClass('active');
+			var currPage = $(this).attr('rel');
+			var startItem = currPage * rowsShown;
+			var endItem = startItem + rowsShown;
+			$('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+				css('display', 'table-row').animate({ opacity: 1 }, 300);
 		});
 	}); 
 </script>
