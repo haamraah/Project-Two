@@ -105,7 +105,7 @@ $.get("/api/warehouse", function (data, status) {
 
 }).then(function (res) {
      materialsForAdd = res.map(material => {
-        return material.materialName
+        return material.materialName + " " + material.materialSize
     })
      // material auto complete
      autocomplete(document.getElementById("materialInput"), materialsForAdd);
