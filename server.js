@@ -75,6 +75,9 @@ const hbs = exphbs.create({
         return "bg-danger";
       }
     },
+    phoneFormatter: function (number) {
+      return `(${number.slice(0,3)})${number.slice(4,)}`
+    }
   }
 });
 
