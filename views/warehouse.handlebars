@@ -5,7 +5,10 @@
 	<!-- navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand ml-2" href="#">
+			<img class="logo-img" src="styles/images/Hamjars-Inc-Logo2.png" ALT="align box"
+			     ALIGN="right">
 			<h4>{{user.username}}</h4>
+
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 		        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +51,8 @@
 		<!-- Modal -->
 		<div class="col-2 ml-auto">
 			<!-- Add Button trigger modal -->
-			<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" style="margin-top: 16px;" data-target="#exampleModal">
+			<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" style="margin-top: 16px;"
+			        data-target="#exampleModal">
 				Add <i class="fas fa-users-cog"></i>
 			</button>
 			<!-- Modal -->
@@ -139,6 +143,13 @@
 	</div>
 </div>
 <style>
+	.logo-img {
+		width: 160px;
+		height: 90px;
+		position: relative;
+		top: -20px;
+		right: 16px;
+	}
 	/* search filter css */
 	#searchName {
 		background-image: url('/css/searchicon.png');
