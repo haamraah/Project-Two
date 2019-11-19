@@ -108,7 +108,7 @@ $.get("/api/warehouse", function (data, status) {
         return material.materialName
     })
      // material auto complete
-     autocomplete(document.getElementById("myInput"), materialsForAdd);
+     autocomplete(document.getElementById("materialInput"), materialsForAdd);
      console.log(materialsForAdd, "materials")
      // ////////////
 });
@@ -127,7 +127,7 @@ function searchFunction(x) {
 
     }
     filter = input.value.toUpperCase();
-    table = document.getElementById("data");
+    table = document.getElementById("datax");
     tr = table.getElementsByTagName("tr");
 
     // Loop through all table rows, and hide those who don't match the search query

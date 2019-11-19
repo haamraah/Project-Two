@@ -65,12 +65,16 @@ module.exports = function(app) {
 
   // Update material in warehouse
   app.put("/api/warehouse/:id", function(req, res) {
-    db.Warehouse.update({
+    db.Warehouse.update(req.body,{
       where: {
         id: req.params.id
       }
-    }).then(function(rowsUpdated) {
+    }).then(function(rowsUpdated,err) {
+      if (err) throw (err)
+      console.log(rowsUpdated,"rows updated")
       res.json(rowsUpdated);
+    }).catch(function(err){
+      if (err) throw (err);
     });
   });
 
@@ -82,6 +86,18 @@ module.exports = function(app) {
       }
     }).then(function(dbExample) {
       res.json(dbExample);
+    });
+  });
+
+  // Get material by id
+  app.get("/api/warehouse/:id", function(req, res) {
+    db.Warehouse.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(material) {
+      
+      res.json(material);
     });
   });
 
