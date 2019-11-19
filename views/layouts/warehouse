@@ -1,0 +1,247 @@
+<div class="wrapper-editor">
+
+  <div class="container-fluid">
+	<div class="page-header">
+	
+	</div>
+	<!--            navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand ml-2" href="#">{{userName}}</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="/dashboard">Home <span class="sr-only"></span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/logout">Sign out</a>
+				</li>
+        <li class="nav-item">
+					<a class="nav-link" href="/dashboard">Dashboard</a>
+				</li>
+      
+				 {{!-- <img class="logo-img"  src="styles/images/Hamjars-Inc-Logo2.png" ALT="align box"
+                ALIGN="right">
+			 --}}
+        
+			</ul>
+		</div>
+	</nav>
+	<hr/>
+</div>
+
+  <div class="row d-flex justify-content-center modalWrapper">
+    <div class="modal fade addNewInputs" id="modalAdd1" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add Materials</h4>
+            <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+
+
+          <div class="modal-body">
+							<form method="post" action="/api/warehouse" id="form">
+								<div class="form-group">
+									<input class="form-control" name="materialName" id="materialName"
+										aria-describedby="materialName" placeholder="Material Name">
+									<label for="materialName" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialSize" id="materialSize"
+										aria-describedby="clientAddress" placeholder="Material Size">
+									<label for="materialSize" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialQuantity" id="materialQuantity"
+										placeholder="Material Quantity">
+									<label for="materialQuantity" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialPrice" id="materialPrice"
+										placeholder="Material Price">
+									<label for="materialPrice" class="font-weight-bold"></label>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<input type="submit" class="btn btn-primary" id="submit" value="Submit">
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="row d-flex justify-content-center modalWrapper">
+<div class="text-center">
+  <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Add<i
+      class="fas fa-plus-square ml-1"></i></a>
+</div>
+
+<div class="modal fade modalEditClass" id="modalEdit1" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
+        <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="formNameEdit1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="formNameEdit1">Material Name</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <input type="text" id="formPositionEdit1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="formPositionEdit1">Material Style</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <input type="text" id="formOfficeEdit1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="formOfficeEdit1">Material Quantity (sq.ft)</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <input type="text" id="formAgeEdit1" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="formAgeEdit1">Material Price</label>
+        </div>
+        
+
+      </div>
+      </div>
+    
+<div class="row d-flex justify-content-center modalWrapper">
+
+      <div class="modal-footer d-flex justify-content-center editInsideWrapper">
+        <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
+          form
+          <i class="fas fa-paper-plane-o ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center buttonEditWrapper">
+  <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit1"
+    disabled>Edit<i class="fas fa-pencil-square-o ml-1"></i></a>
+</div>
+
+</div>
+
+<div class="row d-flex justify-content-center modalWrapper">
+
+<div class="modal fade" id="modalDelete1" tabindex="-1" role="dialog" aria-labelledby="modalDelete1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
+        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <p class="text-center h4">Are you sure to delete selected row?</p>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
+        <button type="button" class="btn btn-danger btnYesClass" id="btnYes1" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-primary btnNoClass" id="btnNo1" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal" disabled data-target="#modalDelete"
+    disabled>Delete<i class="fas fa-times ml-1"></i></a>
+</div>
+
+
+
+</div><br>
+
+
+
+<table  id="dt-more-columns 6" class="table table-striped table-bordered" cellspacing="" width="80%">
+  <thead>
+    <tr>
+      <th class="th-sm">Material Name
+
+      </th>
+      <th class="th-sm">Material Size
+
+      </th>
+      <th class="th-sm">Material Quantity
+
+      </th>
+      <th class="th-sm">Material Price
+
+      </th>
+      
+
+    </tr>
+  </thead>
+  <tbody>
+
+
+    {{#each inventory}}
+    <tr>
+      <td>{{this.materialName}}</td>
+      <td>{{this.materialSize}}</td>
+      <td>{{this.materialQuantity}}</td>
+      <td>{{this.materialPrice}}</td>
+
+    </tr>
+    {{/each}}
+    <tr>
+      <td>Antique Java Bamboo</td>
+      <td>3/8 in. x 2 1/4 in. Dark</td>
+      <td>1500 sq. ft.</td>
+      <td>3.00/sq. ft.</td>
+      
+    </tr>
+  </tbody>
+  <tfoot>
+
+  </tfoot>
+</table>
+</div>
+
+
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+
+</script>
+
+
