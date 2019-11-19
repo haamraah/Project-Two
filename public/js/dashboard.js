@@ -229,13 +229,10 @@ $(document).ready(function () {
         $("#comments").attr("value", '');
         $("#update").addClass("d-none");
         $("#submit").removeClass("d-none");
-    })
+    });
     // ///////////////////////
 
-
-
     $('[data-toggle="popover"]').popover();
-
     $('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
     var rowsShown = 10;
     var rowsTotal = $('#data tbody tr').length;

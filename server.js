@@ -76,7 +76,10 @@ const hbs = exphbs.create({
       }
     },
     phoneFormatter: function (number) {
-      return `(${number.slice(0,3)})${number.slice(4,)}`
+      return `(${number.slice(0,3)})${number.slice(4,)}`;
+    },
+    priceFormatter: function (number) {
+            return `$ ${number}`;
     }
   }
 });

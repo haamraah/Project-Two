@@ -84,7 +84,6 @@ module.exports = function (app) {
                   }
                 })
               }
-
               res.render("dashboard", {
                 orders: filteredWorkOrders,
                 user: _user,
