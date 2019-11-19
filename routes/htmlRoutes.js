@@ -99,6 +99,27 @@ module.exports = function (app) {
     }
   }});
 
+  // Review page
+  app.get("/dashboard/review/:id", (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+      let _user = req.session.user;
+      db.Workorder.findAll({
+        where: {
+          id: req.params.id
+        }, raw: true,
+      }).then(workOrders =>{
+        console.log(workOrders[0].id);
+          res.render("review", {
+            orders: workOrders[0],
+            user: _user
+          })}
+      )
+        .catch(err => console.log(err))
+    } else {
+      res.redirect("/login");
+    }
+  });
+
   // route for user logout
   app.get("/logout", (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
