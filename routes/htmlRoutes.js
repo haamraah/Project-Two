@@ -20,9 +20,9 @@ module.exports = function (app) {
   // route for user signup
   app.route("/signup")
     .get((req, res) => {
-      // if (req.session.user && req.session.user.isAdmin){
-      res.sendFile(process.cwd() + "/public/signup.html");
-      // }
+      if (req.session.user && req.session.user.isAdmin) {
+        res.sendFile(process.cwd() + "/public/signup.html");
+      }
     })
     .post((req, res) => {
       db.User.create({
@@ -75,8 +75,17 @@ module.exports = function (app) {
         .then(workOrders => {
           db.Warehouse.findAll()
             .then(_materials => {
+              if (_user.isAdmin) {
+                var filteredWorkOrders = workOrders
+              } else {
+                var filteredWorkOrders = workOrders.filter(workOrder => {
+                  if (workOrder.installerName.toUpperCase() == _user.username.toUpperCase()) {
+                    return workOrder
+                  }
+                })
+              }
               res.render("dashboard", {
-                orders: workOrders,
+                orders: filteredWorkOrders,
                 user: _user,
                 materials: _materials
               })
@@ -91,7 +100,7 @@ module.exports = function (app) {
 
   // route for warehouse management
   app.get("/warehouse", (req, res) => {
-    if (req.session.user.isAdmin) {
+    if (req.session.user && req.session.user.isAdmin) {
       if (req.session.user && req.cookies.user_sid) {
         let _user = req.session.user.username;
         db.Warehouse.findAll()
@@ -112,15 +121,17 @@ module.exports = function (app) {
     if (req.session.user && req.cookies.user_sid) {
       let _user = req.session.user;
       db.Workorder.findAll({
-        where: {
-          id: req.params.id
-        }, raw: true,
-      }).then(workOrders =>{
+          where: {
+            id: req.params.id
+          },
+          raw: true,
+        }).then(workOrders => {
+          console.log(workOrders[0].id);
           res.render("review", {
             orders: workOrders[0],
             user: _user
-          })}
-      )
+          })
+        })
         .catch(err => console.log(err))
     } else {
       res.redirect("/login");
