@@ -41,12 +41,12 @@
 		<!--		search bar-->
 		<div class="wrap mr-2">
 			<div class="search">
-				<input class="searchInput" type="text" onkeyup="searchFunction(1)" id="searchName" placeholder="Search for names.."
-					title="Type in a name">
+				<input class="searchInput" type="text" onkeyup="searchFunction(1)" id="searchName"
+					placeholder="Search for names.." title="Type in a name">
 
 
-				<input class="searchInput" type="text" onkeyup="searchFunction(2)" id="searchPhone" placeholder="Search for Phone Number.."
-					title="Type in a name">
+				<input class="searchInput" type="text" onkeyup="searchFunction(2)" id="searchPhone"
+					placeholder="Search for Phone Number.." title="Type in a name">
 
 			</div>
 		</div>
@@ -98,8 +98,13 @@
 									<label for="jobAddress" class="font-weight-bold">Job Address</label>
 								</div>
 								<div class="form-group">
-									<input class="form-control" name="materials" id="materials">
-									<label for="materials" class="font-weight-bold">Materials</label>
+									{{!-- <input class="form-control" name="materials" id="materials">
+									<label for="materials" class="font-weight-bold">Materials</label> --}}
+
+
+									<div class="autocomplete" style="width:300px;">
+										<input id="myInput" type="text" autocomplete="off" name="materials" placeholder="materials">
+									</div>
 								</div>
 								<div class="form-group">
 									<input class="form-control" name="comments" id="comments"
@@ -177,7 +182,7 @@
 			<tr>
 				<td><a class="badge badge-pill badge-primary" href="/dashboard/review/{{id}}">Review</a></td>
 				<td scope="row">{{clientName}}</td>
-				<td>{{phoneFormatter clientPhone}}</td>
+				<td>{{clientPhone}}</td>
 				<td>{{installationDate}}</td>
 				<td>{{materials}}</td>
 				<td><span class="badge badge-pill {{checkStatus isComplete}} text-white"
@@ -217,7 +222,7 @@
 
 	/* search filter css */
 	#searchName {
-		background-image: url('/css/searchicon.png');
+		/*background-image: url('/css/searchicon.png');*/
 		/* Add a search icon to input */
 		background-position: 10px 12px;
 		/* Position the search icon */
@@ -236,7 +241,7 @@
 	}
 
 	#searchPhone {
-		background-image: url('/css/searchicon.png');
+		/*background-image: url('/css/searchicon.png');
 		/* Add a search icon to input */
 		background-position: 10px 12px;
 		/* Position the search icon */
@@ -301,5 +306,5 @@
 <script>
 
 	// Pagination function
-	
+
 </script>

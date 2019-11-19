@@ -20,9 +20,9 @@ module.exports = function (app) {
   // route for user signup
   app.route("/signup")
     .get((req, res) => {
-      // if (req.session.user && req.session.user.isAdmin){
+      if (req.session.user && req.session.user.isAdmin){
       res.sendFile(process.cwd() + "/public/signup.html");
-      // }
+      }
     })
     .post((req, res) => {
       db.User.create({
@@ -92,7 +92,7 @@ module.exports = function (app) {
 
   // route for warehouse management
   app.get("/warehouse", (req, res) => {
-    if (req.session.user.isAdmin) {
+    if (req.session.user && req.session.user.isAdmin) {
       if (req.session.user && req.cookies.user_sid) {
         let _user = req.session.user.username;
         db.Warehouse.findAll()
