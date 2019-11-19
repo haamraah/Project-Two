@@ -139,8 +139,8 @@
 				<tr id="address" class="">
 					<th>Material Quantity:</th>
 					<td colspan="2">{{this.materialQuantity}}</td>
-					<th>Material Price:</th>
-					<td colspan="3">{{this.materialPrice}}</td>
+					<th>Material Price (per sq ft):</th>
+					<td colspan="3">{{priceFormatter this.materialPrice}}</td>
 				</tr>
 			{{else}}
 				<h1>No jobs available</h1>
