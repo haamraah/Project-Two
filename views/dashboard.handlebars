@@ -36,15 +36,18 @@
 	<hr />
 </div>
 
-
 <div class="container mt-5">
 	<div class="row">
 		<!--		search bar-->
 		<div class="wrap mr-2">
 			<div class="search">
+<<<<<<< HEAD
 
        
 				    <input class="input-field" type="text" id="searchName" onkeyup="searchFunction(1)" placeholder="Search for names.."
+=======
+				<input type="text" id="searchName" onkeyup="searchFunction(1)" placeholder="Search for names.."
+>>>>>>> c8f1692f9273d3b82711a50efa2026afe26dcdd4
 					title="Type in a name">
 				
 			
@@ -54,7 +57,7 @@
 			</div>
 		</div>
 
-		<div class="col-2 ml-auto">
+		<div class="col-1 ml-auto">
 			<!-- Add Button trigger modal -->
 			{{#if user.isAdmin}}
 			<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" data-target="#exampleModal">
@@ -149,6 +152,7 @@
 			<!--                    end of modal-->
 		</div>
 	</div>
+	<hr />
 	<div class="row mt-4">
 
 
@@ -171,9 +175,9 @@
 			</tr>
 			{{#each orders}}
 			<tr>
-				<td><button class="badge badge-pill badge-primary">Review</button></td>
+				<td><a class="badge badge-pill badge-primary" href="/dashboard/review/{{id}}">Review</a></td>
 				<td scope="row">{{clientName}}</td>
-				<td>{{clientPhone}}</td>
+				<td>{{phoneFormatter clientPhone}}</td>
 				<td>{{installationDate}}</td>
 				<td>{{materials}}</td>
 				<td><span class="badge badge-pill {{checkStatus isComplete}} text-white" id="status">{{isComplete}}</span></td>
