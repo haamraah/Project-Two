@@ -156,7 +156,7 @@ $(document).ready(function () {
     $(document).on('click', '.edit', function (e) {
         e.preventDefault();
         ID = $(this).attr("id");
-        URL = `http://localhost:3000/api/workorder/${$(this).attr("id")}`;
+        URL = `/api/workorder/${$(this).attr("id")}`;
         console.log("EDIT: " + URL);
 
         $.ajax({
@@ -204,7 +204,7 @@ $(document).ready(function () {
         $.ajax({
             method: 'PUT', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
             dataType: 'json', // Set datatype - affects Accept header
-            url: `http://localhost:3000/api/workorder/${data.id}`, // A valid URL
+            url: `/api/workorder/${data.id}`, // A valid URL
             headers: {
                 "X-HTTP-Method-Override": "PUT"
             }, // X-HTTP-Method-Override set to PUT.
