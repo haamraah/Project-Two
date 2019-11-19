@@ -15,21 +15,22 @@ module.exports = function (app) {
   app.get("/", sessionChecker, (req, res) => {
     res.redirect("/login");
   });
- 
+
 
   // route for user signup
   app.route("/signup")
     .get((req, res) => {
-      if (req.session.user && req.session.user.isAdmin){
+      // if (req.session.user && req.session.user.isAdmin){
       res.sendFile(process.cwd() + "/public/signup.html");
-    }})
+      // }
+    })
     .post((req, res) => {
       db.User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        isAdmin:req.body.isAdmin
-      })
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          isAdmin: req.body.isAdmin
+        })
         .then(user => {
           req.session.user = user.dataValues;
           res.redirect("/login");
@@ -71,11 +72,17 @@ module.exports = function (app) {
       let _user = req.session.user;
       console.log(_user);
       db.Workorder.findAll()
-        .then(workOrders =>
-          res.render("dashboard", {
-            orders: workOrders,
-            user: _user
-          }))
+        .then(workOrders => {
+          db.Warehouse.findAll()
+            .then(_materials => {
+              res.render("dashboard", {
+                orders: workOrders,
+                user: _user,
+                materials: _materials
+              })
+            })
+            .catch(err => console.log(err))
+        })
         .catch(err => console.log(err))
     } else {
       res.redirect("/login");
@@ -84,20 +91,21 @@ module.exports = function (app) {
 
   // route for warehouse management
   app.get("/warehouse", (req, res) => {
-    if (req.session.user.isAdmin){
-    if (req.session.user && req.cookies.user_sid) {
-      let _user = req.session.user.username;
-      db.Warehouse.findAll()
-        .then(materials =>
-          res.render("warehouse", {
-            inventory: materials,
-            user: _user
-          }))
-        .catch(err => console.log(err))
-    } else {
-      res.redirect("/login");
+    if (req.session.user.isAdmin) {
+      if (req.session.user && req.cookies.user_sid) {
+        let _user = req.session.user.username;
+        db.Warehouse.findAll()
+          .then(materials =>
+            res.render("warehouse", {
+              inventory: materials,
+              user: _user
+            }))
+          .catch(err => console.log(err))
+      } else {
+        res.redirect("/login");
+      }
     }
-  }});
+  });
 
   // Review page
   app.get("/dashboard/review/:id", (req, res) => {
@@ -108,7 +116,6 @@ module.exports = function (app) {
           id: req.params.id
         }, raw: true,
       }).then(workOrders =>{
-        console.log(workOrders[0].id);
           res.render("review", {
             orders: workOrders[0],
             user: _user

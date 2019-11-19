@@ -41,11 +41,9 @@
 		<!--		search bar-->
 		<div class="wrap mr-2">
 			<div class="search">
-
-				<input type="text" id="searchName" onkeyup="searchFunction(1)" placeholder="Search for names.." title="Type in a name">
-				<input class="input-field"type="text" id="searchPhone" onkeyup="searchFunction(2)" placeholder="Search for Phone Number.."
+				<input class="searchInput" type="text" onkeyup="searchFunction(1)" id="searchName" placeholder="Search for names.."
 					title="Type in a name">
-				
+				<input class="searchInput" type="text" onkeyup="searchFunction(2)" id="searchPhone" placeholder="Search for Phone Number.." title="Type in a name">
 			</div>
 		</div>
 
@@ -56,7 +54,6 @@
 				Add <i class="fas fa-users-cog"></i>
 			</button>
 			{{/if}}
-
 			<!-- Modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 				aria-hidden="true">
@@ -114,17 +111,20 @@
 
 								<!--                                        process-->
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="Completed" value="Completed">
+									<input class="form-check-input" type="radio" name="isComplete" id="Completed"
+										value="Completed">
 									<label class="form-check-label" for="inlineRadio1"><span
 											class="badge badge-pill badge-success">Completed</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="Pending" value="Pending">
+									<input class="form-check-input" type="radio" name="isComplete" id="Pending"
+										value="Pending">
 									<label class="form-check-label" for="inlineRadio2"><span
 											class="badge badge-pill badge-warning">Pending</span></label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="isComplete" id="Canceled" value="Canceled">
+									<input class="form-check-input" type="radio" name="isComplete" id="Canceled"
+										value="Canceled">
 									<label class="form-check-label" for="inlineRadio3"><span
 											class="badge badge-pill badge-danger">Canceled</span></label>
 								</div>
@@ -172,7 +172,8 @@
 				<td>{{phoneFormatter clientPhone}}</td>
 				<td>{{installationDate}}</td>
 				<td>{{materials}}</td>
-				<td><span class="badge badge-pill {{checkStatus isComplete}} text-white" id="status">{{isComplete}}</span></td>
+				<td><span class="badge badge-pill {{checkStatus isComplete}} text-white"
+						id="status">{{isComplete}}</span></td>
 				<td>{{installerName}}</td>
 				<td><button class="badge badge-pill badge-info" data-toggle="popover" title="Note:"
 						data-content={{this.comments}}>Read</button></td>
@@ -288,65 +289,3 @@
 	}
 </style>
 
-<script>
-	function searchFunction(x) {
-		// Declare variables
-		var input, filter, table, tr, td, i, txtValue;
-		if (x === 1) {
-			input = document.getElementById("searchName");
-		} else if (x === 2) {
-			input = document.getElementById("searchPhone");
-
-		}
-		filter = input.value.toUpperCase();
-		table = document.getElementById("data");
-		tr = table.getElementsByTagName("tr");
-
-		// Loop through all table rows, and hide those who don't match the search query
-		for (i = 1; i < tr.length; i += 2) {
-			td = tr[i].getElementsByTagName("td")[x];
-			{ { !--console.log(td, "td") --} }
-			if (td) {
-				txtValue = td.textContent || td.innerText;
-				if (txtValue.toUpperCase().indexOf(filter) > -1) {
-					tr[i].style.display = "";
-					tr[i + 1].style.display = "";
-
-				} else {
-					tr[i].style.display = "none";
-					tr[i + 1].style.display = "none";
-
-				}
-			}
-		}
-	}
-	// Pagination function
-	$(document).ready(function () {
-
-		$('[data-toggle="popover"]').popover();
-
-		$('#data').after('<div><nav id="nav" aria-label="Page navigation example"><ul class="pagination"></ul></nav></div>');
-		var rowsShown = 10;
-		var rowsTotal = $('#data tbody tr').length;
-		var numPages = rowsTotal / rowsShown;
-		for (i = 0; i < numPages; i++) {
-			var pageNum = i + 1;
-			let newLi = $('<li class="page-item">');
-			$(newLi).append('<a class="page-link" href="#" rel="' + i + '">' + pageNum + '</a>');
-			$(".pagination").append(newLi);
-		}
-		$('#data tbody tr').hide();
-		$('#data tbody tr').slice(0, rowsShown).show();
-		$('#nav a:first').addClass('active');
-		$('#nav a').bind('click', function () {
-
-			$('#nav a').removeClass('active');
-			$(this).addClass('active');
-			var currPage = $(this).attr('rel');
-			var startItem = currPage * rowsShown;
-			var endItem = startItem + rowsShown;
-			$('#data tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-				css('display', 'table-row').animate({ opacity: 1 }, 300);
-		});
-	}); 
-</script>
