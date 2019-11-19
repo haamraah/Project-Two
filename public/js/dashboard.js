@@ -210,6 +210,7 @@ $(document).ready(function () {
             }, // X-HTTP-Method-Override set to PUT.
             data: data, // Some data e.g. Valid JSON as a string
             success: window.location.href = "/dashboard",
+
         })
 
     });
