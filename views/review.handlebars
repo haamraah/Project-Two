@@ -1,0 +1,166 @@
+<div class="container">
+	<div class="page-header row">
+		<div class="col-4 mx-auto">
+			<img class="logo-img m-0" style="height: 180px; width: 250px;" src="/styles/images/Hamjars-Inc-Logo.png" alt="logo">
+		</div>
+	</div>
+	<div class="row">
+		<h6 class="font-italic">576 West Ventura Street, Tucson, Arizona 85705 P: 520.209.2470 F: 520.888.7755 www.capitolFloorsinc.com</h6>
+	</div>
+	<!--		info_1-->
+	<hr />
+	<div class="row info_1">
+		<div class="col">
+			<div class="row title mb-4"><h3>Work Order</h3></div>
+			<div class="row">
+				<div class="col">
+					<h6>Order #: 018430</h6>
+					<h6>Order By: {{orders.clientName}}</h6>
+					<h6>Customer ID: {{orders.id}}</h6>
+					<h6>Order Date: {{user.createdAt}}</h6>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="row">
+				<div class="col"><h6>Branch: {{orders.id}}</h6></div>
+				<div class="col">
+					<h6>Date: {{user.createdAt}}</h6>
+					<h6>W/O #: 017332</h6>
+					<H6>Revision #: </H6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<h6>Install Date: {{orders.installationDate}} Time: Any</h6>
+					<h6>Installer ID:</h6>
+					<h6>Installer Name: {{orders.installerName}} </h6>
+					<h6>Ship Via:    Terms:</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--		end of info_1-->
+	<!--		info_2-->
+	<hr />
+	<div class="row info_2 my-4">
+		<!--			sold to-->
+		<div class="col">
+			<div class="row square">
+				<div class="col m-2">
+					<h4 class="head">SOLD TO</h4>
+					<h6>Name: {{orders.clientName}}</h6>
+					<H6>Address: {{orders.clientAddress}}</H6>
+					<h6>City/State: TUCSON, AZ</h6>
+					<h6>Country: The United State</h6>
+					<h6>Phone: {{phoneFormatter orders.clientPhone}}</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col m-2">
+					<h6>Sales ID 1: JIM JIM</h6>
+					<h6>Sales ID 2</h6>
+					<H6>Job Status: {{orders.isComplete}}</H6>
+				</div>
+			</div>
+		</div>
+		<!--			end of sold to-->
+		<!--			Job Location-->
+		<div class="col offset-1">
+			<div class="row square">
+				<div class="col m-2">
+					<h4 class="head">JOB LOCATION</h4>
+					<h6>Code: 0000 Contact</h6>
+					<H6>Address: {{orders.jobAddress}}</H6>
+					<h6>City/State: TUCSON, AZ</h6>
+					<h6>Country: The United State</h6>
+					<h6>Phone: {{phoneFormatter orders.clientPhone}}</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col m-2">
+					<h6>Customer PO:</h6>
+					<h6>Special Instruction: CARPET/PAD AND PLANKS</h6>
+					<h6>Territory Code: E1 EASTING CUSTOMER</h6>
+					<h6>Template: 1X1 DEN 861 SQFT UPSTAIRS</h6>
+				</div>
+			</div>
+		</div>
+		<!--			end of Jab Location-->
+	</div>
+	<!--		end of info_2-->
+	<!--		table-->
+	<hr />
+	<div class="row table">
+		<div class="col">
+			<div class="row">
+				<div class="col">
+					<h5>APPROVE ANY EXTRA FLOOR PREP</h5>
+					<h5>REMOVE ALL OLD LAYERS OF VINYL</h5>
+					<h5>*planks entry, kitchen, hall, laundry, and bath</h5>
+					<h5>*carpet/pad in bedroom, living room, den</h5>
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col">
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th scope="col">Line</th>
+							<th scope="col">Prod Code</th>
+							<th scope="col">Style</th>
+							<th scope="col">Total Qty</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td>@mdo</td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>Jacob</td>
+							<td>Thornton</td>
+							<td>@fat</td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>Larry</td>
+							<td>the Bird</td>
+							<td>@twitter</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--		end of table-->
+	<hr />
+	<div class="row">
+		<div class="col-1 ml-auto">
+			<button class="btn btn-primary m-2 mr-auto" onclick="myFunction()">PRINT</button>
+		</div>
+	</div>
+
+</div>
+
+<style>
+	.square{
+		border: 2px solid black;
+		height: 250px;
+	}
+
+	.head{
+		border-bottom: 2px solid black;
+		background-color: #c4c4c4;
+	}
+</style>
+
+<script>
+	function myFunction() {
+		window.print();
+	}
+</script>
