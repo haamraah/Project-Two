@@ -32,11 +32,9 @@ module.exports = function(app) {
       where: {
         id: req.body.id
       }
-    }).then(function(update) {
-      req.method = 'GET';
-      res.redirect('/dashboard');
+    }).then(function() {
+      console.log("fresh pageeeee");
     });
-
   });
 
   // Delete a workorder by id
