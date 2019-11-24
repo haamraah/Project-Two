@@ -12,6 +12,9 @@ The link below will give you direct access to HamJARS web application using your
 
 * [HamJARS on Heroku](https://blooming-refuge-09509.herokuapp.com/login)
 
+   - username : admin
+   - password : a
+
 ## Local Environment Setup
 To use HamJARS web application application from your local environment, you must accomplish the following steps below:
 
