@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <title>Login Here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+   <link rel="shortcut icon" href="styles/images/apple-icon-60x60.png">
+</head>
+
+<body class="container">
+
+
+    <div class="page-header">
+        <img class="logo-img" width="300" heigt="300" src="styles/images/Hamjars-Inc-Logo2.png" ALT="align box"
+            ALIGN=center>
+
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <!-- <li><a href="/signup">Sign Up</a></li>
+                        <li><a href="/dashboard">Dashboard</a></li> -->
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><a href="/login">Log In</a></li> -->
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+</body>
+
+</html>
+
+
+<div class="container"><br>
+    <div class="col-sm-4 pull-center  bg-danger">
+        <form action="/signup" method="post"><br>
+            <label ><i class="fas fa-user"></i> Username:</label>
+            <div class="form-group row">
+                <input class="col-sm-6" type="text" name="username" />
+              
+
+            </div>
+            <label><i class="fas fa-envelope-square"></i> Email:</label>
+            <div class="form-group row">
+                <input class="col-sm-6" type="text" name="email" class="ml-2" />
+               
+
+            </div>
+            <label><i class="fas fa-unlock-alt"></i> Password:</label>
+            <div class="form-group row">
+                <input class="col-sm-6" type="password" name="password" />
+             
+            </div>
+
+
+
+            <div class="form-check form-check-inline mr-2" class="form-group row">
+                <label class="form-check-label"><i class="fas fa-user-shield"></i> Admin:</label>
+                <input type="radio" name="isAdmin" value="true" class="form-check-input"> true
+                <input type="radio" name="isAdmin" value="false" class="form-check-input"> false
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Sign Up" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

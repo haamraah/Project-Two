@@ -1,0 +1,209 @@
+<script  src="/js/warehouse.js"></script>
+
+<div class="container-fluid">
+	<!-- navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<img class="logo-img ml-3 mt-4" src="styles/images/Hamjars-Inc-Logo2.png" alt="align box" style="height: 77px;width: 200px">
+		<a class="navbar-brand ml-2" href="#">
+			<h3>{{user}} <i class="fas fa-user-shield"></i> </h3>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="/logout">Sign out</a>
+				</li>
+				{{#if user.isAdmin}}
+					<li class="nav-item">
+						<a class="nav-link" href="/signup">Signup</a>
+					</li>
+				{{/if}}
+				<li class="nav-item">
+					<a class="nav-link" href="/dashboard">Dashboard</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<hr />
+	<!-- navbar-->
+</div>
+<div class="container mt-5">
+	<div class="row">
+		<!-- Search Bar -->
+		<div class="input-group md-form form-sm form-2 pl-0">
+			<input type="text" onkeyup="searchFunction(1)" class="form-control text-input"
+			       placeholder="Search material by name" aria-label="Search" id="searchName" value="" />
+
+
+		</div>
+		<!-- Search Bar -->
+		<!-- Modal -->
+		<div class="col-2 ml-auto">
+			<!-- Add Button trigger modal -->
+			<button type="button" class="btn btn-primary" id="addBtn" data-toggle="modal" style="margin-top: 16px;"
+			        data-target="#exampleModal">
+				Add <i class="fas fa-users-cog"></i>
+			</button>
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			     aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Materials</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form method="post" action="/api/warehouse" id="form">
+								<div class="form-group">
+									<input class="form-control" name="materialName" id="materialName"
+									       aria-describedby="materialName" placeholder="Material Name">
+									<label for="materialName" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialSize" id="materialSize"
+									       aria-describedby="clientAddress" placeholder="Material Size">
+									<label for="materialSize" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialQuantity" id="materialQuantity"
+									       placeholder="Material Quantity">
+									<label for="materialQuantity" class="font-weight-bold"></label>
+								</div>
+								<div class="form-group">
+									<input class="form-control" name="materialPrice" id="materialPrice"
+									       placeholder="Material Price">
+									<label for="materialPrice" class="font-weight-bold"></label>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<input type="submit" class="btn btn-primary" id="submit" value="Submit">
+									<button type="button" class="btn btn-danger text-white" id="update"
+									        data-dismiss="modal">Update</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+	</div>
+	<div class="row mt-4">
+		<table id="data" class="table table-striped">
+			{{!-- table head --}}
+			<thead>
+			<tr>
+				<th class="th-sm">Material Name</th>
+				<th class="th-sm"></th>
+				<th class="th-sm"></th>
+				<th class="th-sm">Material Size</th>
+
+
+				<th class="th-sm"></th>
+			</tr>
+			</thead>
+			{{!-- table head --}}
+			{{#each inventory}}
+				<tr>
+					{{!-- <td><button class="badge badge-pill badge-primary">Review</button></td> --}}
+					<td scope="row">{{this.materialName}}</td>
+					<td></td>
+					<td>
+						{{!-- <button class="badge badge-pill badge-info" data-toggle="popover" title="Note:"
+                        data-content={{this.comments}}>Read</button> --}}
+					</td>
+					<td>{{this.materialSize}}</td>
+
+
+					<td>
+						<button type="button" class="badge badge-pill badge-success edit" id={{id}} data-toggle="modal"
+						        data-target="#exampleModal">Edit</button>
+					</td>
+				</tr>
+				<!--         address-->
+				<tr id="address" class="">
+					<th>Material Quantity:</th>
+					<td colspan="2">{{this.materialQuantity}}</td>
+					<th>Material Price (per sq ft):</th>
+					<td colspan="3">{{priceFormatter this.materialPrice}}</td>
+				</tr>
+			{{else}}
+				<h1>No jobs available</h1>
+			{{/each}}
+			<!--         end of single row-->
+			{{!-- </tbody> --}}
+		</table>
+	</div>
+</div>
+<style>
+	.logo-img {
+		width: 160px;
+		height: 90px;
+		position: relative;
+		top: -20px;
+		right: 16px;
+	}
+	/* search filter css */
+	#searchName {
+		/* background-image: url('/css/searchicon.png');
+         /* Add a search icon to input */
+		background-position: 10px 12px;
+		/* Position the search icon */
+		background-repeat: no-repeat;
+		/* Do not repeat the icon image */
+		width: 100%;
+		/* Full-width */
+		font-size: 16px;
+		/* Increase font-size */
+		padding: 12px 20px 12px 40px;
+		/* Add some padding */
+		border: 1px solid #ddd;
+		/* Add a grey border */
+		margin-bottom: 12px;
+		/* Add some space below the input */
+	}
+
+	#data {
+		border-collapse: collapse;
+		/* Collapse borders */
+		width: 100%;
+		/* Full-width */
+		border: 1px solid #ddd;
+		/* Add a grey border */
+		font-size: 18px;
+		/* Increase font-size */
+	}
+	#data th,
+	#data td {
+		text-align: left;
+		/* Left-align text */
+		padding: 12px;
+		/* Add padding */
+	}
+	#data tr {
+		/* Add a bottom border to all table rows */
+		border-bottom: 1px solid #ddd;
+	}
+	#data tr .header {
+		/* Add a grey background color to the table header and on hover */
+		background-color: #f1f1f1;
+	}
+	#address {
+		background: #323147;
+		font-size: small;
+		padding: 0;
+		color: white;
+		line-height: 10px;
+		min-height: 10px;
+		height: 10px;
+	}
+	.fa-map-marked-alt {
+		color: white;
+	}
+</style>
